@@ -1,0 +1,30 @@
+# ================================================
+# SGI ATLAS - Root .htaccess
+# Redirect all requests to public_html/
+# ================================================
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    
+    # Skip rewrite for real files/folders (except .htaccess itself)
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^.*$ - [L]
+    
+    # Redirect everything to public_html/
+    # Skip public_html itself from being rewritten
+    RewriteCond %{REQUEST_URI} !^/public_html/
+    RewriteRule ^(.*)$ /public_html/$1 [L]
+</IfModule>
+
+# Security Headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Disable directory listing
+Options -Indexes
