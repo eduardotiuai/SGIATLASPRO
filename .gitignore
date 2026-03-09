@@ -1,0 +1,65 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules/
+vendor/
+composer.lock
+
+# Build
+dist/
+build/
+*.log
+
+# Cache
+.cache/
+*.cache
+
+# Tests
+coverage/
+.phpunit.result.cache
+
+# OS
+.DS_Store
+.AppleDouble
+.LSOverride
+Desktop.ini
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
+*.backup
+
+# Database
+*.sqlite
+*.sqlite3
+*.db
+
+# Uploads
+uploads/*
+!uploads/.gitkeep
+
+# Logs
+logs/*
+!logs/.gitkeep
+
+# Session files
+sessions/*
+!sessions/.gitkeep
+
+# Private files
+.private/
+secrets/

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGI ATLAS - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        .login-container {
+            animation: fadeIn 0.6s ease-in;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .input-field {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        .input-field:focus {
+            background: #fff;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+        .btn-login {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 102, 204, 0.3);
+        }
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen flex items-center justify-center px-4">
+        <div class="login-container w-full max-w-md">
+            <!-- Card -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+                <!-- Logo -->
+                <div class="text-center mb-8">
+                    <div class="logo mb-3">SGI ATLAS</div>
+                    <p class="text-gray-600 text-sm font-medium">Sistema de Gestão Integrada</p>
+                    <p class="text-gray-500 text-xs mt-2">TI UAI © 2026</p>
+                </div>
+
+                <!-- Form -->
+                <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-5">
+                    <!-- Email -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                            Email
+                        </label>
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="usuario@tiiuai.com.br"
+                            class="input-field w-full px-4 py-3 rounded-lg text-gray-900 placeholder-gray-400 outline-none"
+                            required
+                        />
+                    </div>
+
+                    <!-- Password -->
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+                            Senha
+                        </label>
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="••••••••"
+                            class="input-field w-full px-4 py-3 rounded-lg text-gray-900 placeholder-gray-400 outline-none"
+                            required
+                        />
+                    </div>
+
+                    <!-- Remember & Forgot Password -->
+                    <div class="flex items-center justify-between text-sm">
+                        <label class="flex items-center cursor-pointer">
+                            <input type="checkbox" class="w-4 h-4 rounded border-gray-300" />
+                            <span class="ml-2 text-gray-700">Lembrar-me</span>
+                        </label>
+                        <a href="#" class="text-blue-600 hover:text-blue-700 font-medium">
+                            Esqueceu a senha?
+                        </a>
+                    </div>
+
+                    <!-- Login Button -->
+                    <button
+                        type="submit"
+                        class="btn-login w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg mt-6"
+                    >
+                        Acessar Sistema
+                    </button>
+                </form>
+
+                <!-- Divider -->
+                <div class="relative my-8">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-gray-300"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-2 bg-white text-gray-500">Demo - Dados Mockados</span>
+                    </div>
+                </div>
+
+                <!-- Demo Info -->
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-2">
+                    <p class="text-sm font-semibold text-blue-900">Credenciais de Teste:</p>
+                    <p class="text-xs text-blue-700"><strong>Email:</strong> usuario@tiiuai.com.br</p>
+                    <p class="text-xs text-blue-700"><strong>Senha:</strong> 123456</p>
+                </div>
+
+                <!-- Footer -->
+                <p class="text-center text-xs text-gray-500 mt-8">
+                    Versão Beta 1.0.0 | Sistema em Construção
+                </p>
+            </div>
+
+            <!-- System Status -->
+            <div class="mt-6 text-center">
+                <p class="text-xs text-gray-600">
+                    <span class="inline-block w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                    Todos os serviços operacionais
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>
