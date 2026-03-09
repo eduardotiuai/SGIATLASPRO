@@ -1,0 +1,61 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Allow access to actual files and directories
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+    
+    # Allow API calls to redirect to backend
+    RewriteRule ^api/(.*)$ ../index.php?api=$1 [QSA,L]
+    
+    # Rewrite all other requests to index.html for SPA
+    RewriteRule ^(?!assets/).*$ index.html [QSA,L]
+</IfModule>
+
+# Disable directory listing
+Options -Indexes
+
+# Compress output
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
+# Cache control for assets
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # HTML - no cache
+    ExpiresByType text/html "now"
+    
+    # CSS/JS - 1 year
+    ExpiresByType text/css "now plus 1 year"
+    ExpiresByType application/javascript "now plus 1 year"
+    ExpiresByType text/javascript "now plus 1 year"
+    
+    # Images - 1 year
+    ExpiresByType image/jpeg "now plus 1 year"
+    ExpiresByType image/gif "now plus 1 year"
+    ExpiresByType image/png "now plus 1 year"
+    ExpiresByType image/svg+xml "now plus 1 year"
+    ExpiresByType image/x-icon "now plus 1 year"
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Charset
+AddCharset UTF-8 .html
+AddCharset UTF-8 .css
+AddCharset UTF-8 .js
+AddCharset UTF-8 .json
