@@ -21,20 +21,23 @@ function loadUserProfile(user) {
     const userName = user.name || 'Usuário';
     const userInitials = userName.split(' ').map(n => n[0]).join('').toUpperCase();
     
-    // Update all user avatar elements
-    document.querySelectorAll('#userAvatar, #userAvatarHeader').forEach(el => {
-        el.textContent = userInitials;
-    });
+    // Update header user avatar
+    const headerAvatar = document.getElementById('userAvatarHeader');
+    if (headerAvatar) {
+        headerAvatar.textContent = userInitials;
+    }
     
-    // Update user name
-    document.querySelectorAll('#userName').forEach(el => {
-        el.textContent = userName;
-    });
+    // Update header user name
+    const headerName = document.getElementById('userNameHeader');
+    if (headerName) {
+        headerName.textContent = userName;
+    }
     
-    // Update user role
-    document.querySelectorAll('#userRole').forEach(el => {
-        el.textContent = user.role === 'admin' ? 'System Admin' : ' Usuário';
-    });
+    // Update header user role
+    const headerRole = document.getElementById('userRoleHeader');
+    if (headerRole) {
+        headerRole.textContent = user.role === 'admin' ? 'System Admin' : 'Usuário';
+    }
 }
 
 // Sidebar Toggle
@@ -138,7 +141,7 @@ function logout() {
 
 // Close dropdown when clicking outside
 document.addEventListener('click', function(event) {
-    const userMenu = document.querySelector('.user-menu-clickable');
+    const userMenu = document.querySelector('.user-menu-header');
     const dropdown = document.getElementById('userDropdown');
     if (userMenu && dropdown && !userMenu.contains(event.target)) {
         dropdown.classList.remove('active');

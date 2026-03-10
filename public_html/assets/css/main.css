@@ -157,7 +157,6 @@ body {
 
 .auth-brand {
     flex: 0 0 40%;
-    background: linear-gradient(135deg, #6b21a8 0%, #a855f7 100%);
     color: white;
     display: flex;
     flex-direction: column;
@@ -166,18 +165,31 @@ body {
     padding: 3rem;
     position: relative;
     overflow: hidden;
-    background-image: 
-        radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.4) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(107, 33, 168, 0.4) 0%, transparent 50%),
-        linear-gradient(135deg, #6b21a8 0%, #a855f7 100%);
-    background-size: 100% 100%;
+}
+
+.auth-brand-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.auth-brand-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 1;
 }
 
 .auth-brand::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -50%;
+    display: none;
+}
     width: 500px;
     height: 500px;
     background: rgba(168, 85, 247, 0.1);
@@ -571,6 +583,7 @@ html[data-theme="dark"] .sidebar-item:hover .sidebar-item-text {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    min-height: 0;
 }
 
 .user-menu-clickable {
@@ -694,6 +707,64 @@ html[data-theme="dark"] .header {
     display: flex;
     align-items: center;
     gap: 1rem;
+}
+
+.user-menu-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.user-avatar-header {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-primary), #00a8e8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 0.75rem;
+}
+
+.user-dropdown-header {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: none;
+    flex-direction: column;
+    z-index: 1000;
+    margin-top: 0.5rem;
+    min-width: 200px;
+    overflow: hidden;
+}
+
+.user-dropdown-header.active {
+    display: flex;
+}
+
+.user-info-header {
+    padding: 1rem;
+    border-bottom: 1px solid var(--dark-border);
+}
+
+.user-name-header {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: white;
+}
+
+.user-role-header {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 0.25rem;
 }
 
 .theme-toggle {

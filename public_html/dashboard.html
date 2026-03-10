@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGI ATLAS - Dashboard</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="stylesheet" href="assets/css/main.css?v=1.6.0">
+    <link rel="stylesheet" href="assets/css/main.css?v=1.8.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -16,20 +16,13 @@
             <div class="sidebar-header">
                 <div class="sidebar-logo">
                     <div class="sidebar-logo-icon">SA</div>
-                </div>                <div class="sidebar-header-actions">
-                    <button class="sidebar-header-btn sidebar-btn-theme" title="Alternar tema">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                    <button class="sidebar-header-btn" title="Abrir chamado" style="display: none;">
-                        <i class="fas fa-ticket-alt"></i>
-                    </button>
+                </div>
+                <div class="sidebar-header-actions">
                     <button class="sidebar-header-btn sidebar-btn-notif" title="Notificações">
                         <i class="fas fa-bell"></i>
                     </button>
-                    <button class="sidebar-header-btn" title="Mensagens" style="display: none;">
-                        <i class="fas fa-envelope"></i>
-                    </button>
-                </div>                <button class="sidebar-toggle" id="toggleSidebar" title="Recolher">
+                </div>
+                <button class="sidebar-toggle" id="toggleSidebar" title="Recolher">
                     <i class="fas fa-chevron-left"></i>
                 </button>
             </div>
@@ -127,27 +120,6 @@
 
             <!-- Footer -->
             <div class="sidebar-footer">
-                <div class="user-menu-clickable" onclick="toggleUserDropdown()" title="Menu do usuário">
-                    <div class="user-avatar" id="userAvatar">U</div>
-                    <div class="user-info">
-                        <div class="user-name" id="userName">Usuário</div>
-                        <div class="user-role" id="userRole">Admin</div>
-                    </div>
-                    <div class="user-dropdown" id="userDropdown">
-                        <button class="user-dropdown-item" onclick="changeProfilePhoto()">
-                            <i class="fas fa-image"></i>
-                            <span>Trocar Foto</span>
-                        </button>
-                        <button class="user-dropdown-item" onclick="changePassword()">
-                            <i class="fas fa-key"></i>
-                            <span>Alterar Senha</span>
-                        </button>
-                        <button class="user-dropdown-item" onclick="logout()">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span>Sair</span>
-                        </button>
-                    </div>
-                </div>
             </div>
         </aside>
 
@@ -156,6 +128,31 @@
             <!-- Header -->
             <header class="header">
                 <h1 class="header-title" id="pageTitle">Dashboard</h1>
+                <div class="header-actions">
+                    <div class="user-menu-header" onclick="toggleUserDropdown()" title="Menu do usuário">
+                        <div class="user-avatar-header" id="userAvatarHeader">U</div>
+                        <div class="user-dropdown-header" id="userDropdown">
+                            <div class="user-info-header">
+                                <div class="user-name-header" id="userNameHeader">Usuário</div>
+                                <div class="user-role-header" id="userRoleHeader">Admin</div>
+                            </div>
+                            <div style="border-top: 1px solid rgba(255,255,255,0.1); margin: 0.5rem -1rem; padding: 0.5rem 1rem 0 1rem;">
+                                <button class="user-dropdown-item" onclick="changeProfilePhoto()">
+                                    <i class="fas fa-image"></i>
+                                    <span>Trocar Foto</span>
+                                </button>
+                                <button class="user-dropdown-item" onclick="changePassword()">
+                                    <i class="fas fa-key"></i>
+                                    <span>Alterar Senha</span>
+                                </button>
+                                <button class="user-dropdown-item" onclick="logout()">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span>Sair</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </header>
 
             <!-- Content -->
@@ -183,8 +180,8 @@
         </div>
     </div>
 
-    <script src="assets/js/theme.js?v=1.6.0"></script>
-    <script src="assets/js/sidebar.js?v=1.6.0"></script>
-    <script src="assets/js/modules.js?v=1.6.0"></script>
+    <script src="assets/js/theme.js?v=1.8.0"></script>
+    <script src="assets/js/sidebar.js?v=1.8.0"></script>
+    <script src="assets/js/modules.js?v=1.8.0"></script>
 </body>
 </html>
