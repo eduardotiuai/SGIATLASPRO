@@ -145,34 +145,34 @@ function loadDashboard() {
     contentArea.innerHTML = `
         <div class="main-content-section">
             <!-- Welcome Section -->
-            <div class="card welcome-card" style="background: linear-gradient(135deg, var(--accent-primary), var(--primary-dark)); color: white; padding: 2rem;">
-                <h2 style="font-size: 1.875rem; font-weight: bold; margin-bottom: 0.5rem;">Bem-vindo ao SGI ATLAS!</h2>
+            <div class="card welcome-card" style="background: linear-gradient(135deg, var(--accent-primary), var(--primary-dark)); color: white; padding: 1.5rem;">
+                <h2 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem;">Bem-vindo ao SGI ATLAS!</h2>
                 <p style="opacity: 0.9;">Sistema Enterprise - Selecione um módulo na barra lateral para explorar funcionalidades</p>
             </div>
 
             <!-- Statistics Grid -->
-            <div class="modules-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
-                <div class="card" style="display: flex; align-items: center; justify-content: space-between; padding: 1.5rem;">
+            <div class="modules-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                <div class="card" style="display: flex; align-items: center; justify-content: space-between; padding: 1rem;">
                     <div>
                         <p style="color: var(--text-secondary); font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem;">Módulos</p>
-                        <p style="font-size: 1.875rem; font-weight: bold; color: var(--text-primary);">18</p>
+                        <p style="font-size: 1.5rem; font-weight: bold; color: var(--text-primary);">18</p>
                     </div>
                     <div style="width: 3rem; height: 3rem; background-color: var(--accent-light); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
                         <i class="fas fa-cube" style="color: var(--accent-primary); font-size: 1.25rem;"></i>
                     </div>
                 </div>
 
-                <div class="card" style="display: flex; align-items: center; justify-content: space-between; padding: 1.5rem;">
+                <div class="card" style="display: flex; align-items: center; justify-content: space-between; padding: 1rem;">
                     <div>
                         <p style="color: var(--text-secondary); font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem;">Usuários</p>
-                        <p style="font-size: 1.875rem; font-weight: bold; color: var(--text-primary);">3</p>
+                        <p style="font-size: 1.5rem; font-weight: bold; color: var(--text-primary);">3</p>
                     </div>
                     <div style="width: 3rem; height: 3rem; background-color: rgba(16, 167, 96, 0.1); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
                         <i class="fas fa-users" style="color: var(--success); font-size: 1.25rem;"></i>
                     </div>
                 </div>
 
-                <div class="card" style="display: flex; align-items: center; justify-content: space-between; padding: 1.5rem;">
+                <div class="card" style="display: flex; align-items: center; justify-content: space-between; padding: 1rem;">
                     <div>
                         <p style="color: var(--text-secondary); font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem;">Status</p>
                         <p style="font-size: 1rem; font-weight: bold; color: var(--success);">
@@ -184,10 +184,10 @@ function loadDashboard() {
                     </div>
                 </div>
 
-                <div class="card" style="display: flex; align-items: center; justify-content: space-between; padding: 1.5rem;">
+                <div class="card" style="display: flex; align-items: center; justify-content: space-between; padding: 1rem;">
                     <div>
                         <p style="color: var(--text-secondary); font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem;">Versão</p>
-                        <p style="font-size: 1.5rem; font-weight: bold; color: var(--text-primary);">1.0.0</p>
+                        <p style="font-size: 1.25rem; font-weight: bold; color: var(--text-primary);">1.0.0</p>
                     </div>
                     <div style="width: 3rem; height: 3rem; background-color: var(--accent-light); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
                         <i class="fas fa-info-circle" style="color: var(--accent-primary); font-size: 1.25rem;"></i>
@@ -196,9 +196,9 @@ function loadDashboard() {
             </div>
 
             <!-- Featured Modules & System Info -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
                 <div class="card">
-                    <h3 style="font-size: 1.125rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <h3 style="font-size: 0.95rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
                         <i class="fas fa-star" style="color: #f59e0b;"></i>
                         Módulos Principais
                     </h3>
@@ -218,24 +218,24 @@ function loadDashboard() {
                 </div>
 
                 <div class="card">
-                    <h3 style="font-size: 1.125rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <h3 style="font-size: 0.95rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
                         <i class="fas fa-info-circle" style="color: var(--accent-primary);"></i>
                         Informações do Sistema
                     </h3>
-                    <div style="display: flex; flex-direction: column; gap: 0; font-size: 0.875rem;">
-                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color);">
+                    <div style="display: flex; flex-direction: column; gap: 0; font-size: 0.75rem;">
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
                             <span style="color: var(--text-secondary);">Empresa:</span>
                             <span style="font-weight: 500; color: var(--text-primary);">TI UAI</span>
                         </div>
-                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color);">
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
                             <span style="color: var(--text-secondary);">Versão:</span>
                             <span style="font-weight: 500; color: var(--text-primary);">1.0.0 Beta</span>
                         </div>
-                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color);">
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
                             <span style="color: var(--text-secondary);">Modo:</span>
                             <span style="font-weight: 500; color: var(--accent-primary);">Dados Mockados</span>
                         </div>
-                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 0;">
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 0;">
                             <span style="color: var(--text-secondary);">Tipo:</span>
                             <span style="font-weight: 500; color: var(--text-primary);">Multi-tenant</span>
                         </div>
@@ -244,27 +244,27 @@ function loadDashboard() {
             </div>
 
             <!-- Quick Actions -->
-            <div class="card" style="margin-top: 2rem;">
-                <h3 style="font-size: 1.125rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+            <div class="card" style="margin-top: 1rem;">
+                <h3 style="font-size: 0.95rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
                     <i class="fas fa-lightning-bolt" style="color: #f59e0b;"></i>
                     Ações Rápidas
                 </h3>
                 <div class="modules-grid">
-                    <button style="padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.5rem; background-color: transparent; cursor: pointer; transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); text-align: center;" onmouseover="this.style.borderColor='var(--accent-primary)'; this.style.backgroundColor='var(--accent-light)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.backgroundColor='transparent'">
-                        <i class="fas fa-plus-circle" style="color: var(--accent-primary); font-size: 1.5rem; display: block; margin-bottom: 0.5rem;"></i>
-                        <p style="font-size: 0.875rem; font-weight: 500; color: var(--text-primary);">Novo Cadastro</p>
+                    <button style="padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.5rem; background-color: transparent; cursor: pointer; transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); text-align: center;" onmouseover="this.style.borderColor='var(--accent-primary)'; this.style.backgroundColor='var(--accent-light)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.backgroundColor='transparent'">
+                        <i class="fas fa-plus-circle" style="color: var(--accent-primary); font-size: 1.25rem; display: block; margin-bottom: 0.25rem;"></i>
+                        <p style="font-size: 0.75rem; font-weight: 500; color: var(--text-primary);">Novo</p>
                     </button>
-                    <button style="padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.5rem; background-color: transparent; cursor: pointer; transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); text-align: center;" onmouseover="this.style.borderColor='var(--success)'; this.style.backgroundColor='rgba(16, 167, 96, 0.05)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.backgroundColor='transparent'">
-                        <i class="fas fa-file-export" style="color: var(--success); font-size: 1.5rem; display: block; margin-bottom: 0.5rem;"></i>
-                        <p style="font-size: 0.875rem; font-weight: 500; color: var(--text-primary);">Relatório</p>
+                    <button style="padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.5rem; background-color: transparent; cursor: pointer; transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); text-align: center;" onmouseover="this.style.borderColor='var(--success)'; this.style.backgroundColor='rgba(16, 167, 96, 0.05)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.backgroundColor='transparent'">
+                        <i class="fas fa-file-export" style="color: var(--success); font-size: 1.25rem; display: block; margin-bottom: 0.25rem;"></i>
+                        <p style="font-size: 0.75rem; font-weight: 500; color: var(--text-primary);">Relatório</p>
                     </button>
-                    <button style="padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.5rem; background-color: transparent; cursor: pointer; transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); text-align: center;" onmouseover="this.style.borderColor='var(--accent-primary)'; this.style.backgroundColor='var(--accent-light)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.backgroundColor='transparent'">
-                        <i class="fas fa-chart-bar" style="color: var(--accent-primary); font-size: 1.5rem; display: block; margin-bottom: 0.5rem;"></i>
-                        <p style="font-size: 0.875rem; font-weight: 500; color: var(--text-primary);">Análise</p>
+                    <button style="padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.5rem; background-color: transparent; cursor: pointer; transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); text-align: center;" onmouseover="this.style.borderColor='var(--accent-primary)'; this.style.backgroundColor='var(--accent-light)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.backgroundColor='transparent'">
+                        <i class="fas fa-chart-bar" style="color: var(--accent-primary); font-size: 1.25rem; display: block; margin-bottom: 0.25rem;"></i>
+                        <p style="font-size: 0.75rem; font-weight: 500; color: var(--text-primary);">Análise</p>
                     </button>
-                    <button style="padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.5rem; background-color: transparent; cursor: pointer; transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); text-align: center;" onmouseover="this.style.borderColor='var(--accent-primary)'; this.style.backgroundColor='var(--accent-light)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.backgroundColor='transparent'" onclick="alert('Funcionalidade em breve!')">
-                        <i class="fas fa-cog" style="color: var(--accent-primary); font-size: 1.5rem; display: block; margin-bottom: 0.5rem;"></i>
-                        <p style="font-size: 0.875rem; font-weight: 500; color: var(--text-primary);">Preferências</p>
+                    <button style="padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.5rem; background-color: transparent; cursor: pointer; transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); text-align: center;" onmouseover="this.style.borderColor='var(--accent-primary)'; this.style.backgroundColor='var(--accent-light)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.backgroundColor='transparent'" onclick="alert('Funcionalidade em breve!')">
+                        <i class="fas fa-cog" style="color: var(--accent-primary); font-size: 1.25rem; display: block; margin-bottom: 0.25rem;"></i>
+                        <p style="font-size: 0.75rem; font-weight: 500; color: var(--text-primary);">Config</p>
                     </button>
                 </div>
             </div>
