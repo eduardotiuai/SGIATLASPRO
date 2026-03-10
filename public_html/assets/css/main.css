@@ -6,10 +6,10 @@
 
 :root {
     /* Professional Color Palette */
-    --primary-dark: #1a1f35;      /* Deep navy - main bg */
-    --primary-light: #f8f9fc;     /* Almost white - light bg */
-    --secondary-dark: #2d3748;    /* Charcoal - sidebar */
-    --secondary-light: #e2e8f0;   /* Light gray - borders */
+    --primary-dark: #005bb3;      /* Professional blue - light mode */
+    --primary-light: #ffffff;     /* Pure white - light bg */
+    --secondary-dark: #1e90ff;    /* Bright blue - sidebar light mode */
+    --secondary-light: #d4e5f7;   /* Light blue - borders */
     
     /* Accent Colors - Minimal */
     --accent-primary: #0052cc;    /* Professional blue */
@@ -28,10 +28,10 @@
     --text-tertiary: #718096;     /* Lighter gray */
     
     /* Dark Mode */
-    --dark-bg: #0f1419;           /* Very dark bg */
-    --dark-card: #1a1f35;         /* Dark card */
-    --dark-text: #e2e8f0;         /* Light text */
-    --dark-border: #2d3748;       /* Dark border */
+    --dark-bg: #2a2a2a;           /* Dark gray bg */
+    --dark-card: #353535;         /* Medium gray card */
+    --dark-text: #f0f0f0;         /* Light text */
+    --dark-border: #404040;       /* Dark gray border */
     
     /* Spacing & Sizing */
     --radius: 6px;                /* Subtle radius */
@@ -39,15 +39,15 @@
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --hover-bg: #f5f7fa;          /* Hover background - light gray */
-    --border-color: #e2e8f0;      /* Border color */
+    --hover-bg: #e8f1ff;          /* Hover background - light blue */
+    --border-color: #d4e5f7;      /* Border color - light blue */
 }
 
 /* Dark Mode Toggle */
 html[data-theme="dark"] {
     --text-primary: var(--dark-text);
-    --text-secondary: #cbd5e0;
-    --text-tertiary: #a0aec0;
+    --text-secondary: #d0d0d0;
+    --text-tertiary: #b0b0b0;
     --primary-light: var(--dark-bg);
     --secondary-light: var(--dark-border);
 }
