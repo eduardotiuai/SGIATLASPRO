@@ -145,13 +145,13 @@ function loadDashboard() {
     contentArea.innerHTML = `
         <div class="main-content-section">
             <!-- Welcome Section -->
-            <div class="card welcome-card" style="background: linear-gradient(135deg, var(--accent-primary), var(--primary-dark)); color: white; padding: 1.5rem;">
-                <h2 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem;">Bem-vindo ao SGI ATLAS!</h2>
-                <p style="opacity: 0.9;">Sistema Enterprise - Selecione um módulo na barra lateral para explorar funcionalidades</p>
+            <div class="card welcome-card" style="background: linear-gradient(135deg, var(--accent-primary), var(--primary-dark)); color: white; padding: 1rem; margin-bottom: 0.5rem;">
+                <h2 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 0.25rem;">Bem-vindo ao SGI ATLAS!</h2>
+                <p style="opacity: 0.9; font-size: 0.85rem;">Sistema Enterprise - Selecione um módulo na barra lateral</p>
             </div>
 
             <!-- Statistics Grid -->
-            <div class="modules-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+            <div class="modules-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; margin-top: 0.5rem;">
                 <div class="card" style="display: flex; align-items: center; justify-content: space-between; padding: 1rem;">
                     <div>
                         <p style="color: var(--text-secondary); font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem;">Módulos</p>
@@ -196,7 +196,7 @@ function loadDashboard() {
             </div>
 
             <!-- Featured Modules & System Info -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 0.75rem;">
                 <div class="card">
                     <h3 style="font-size: 0.95rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
                         <i class="fas fa-star" style="color: #f59e0b;"></i>
@@ -244,7 +244,7 @@ function loadDashboard() {
             </div>
 
             <!-- Quick Actions -->
-            <div class="card" style="margin-top: 1rem;">
+            <div class="card" style="margin-top: 0.75rem;">
                 <h3 style="font-size: 0.95rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
                     <i class="fas fa-lightning-bolt" style="color: #f59e0b;"></i>
                     Ações Rápidas
