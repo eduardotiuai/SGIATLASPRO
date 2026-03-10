@@ -71,28 +71,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Sidebar Header Buttons
 function attachSidebarHeaderButtons() {
-    const headerBtns = document.querySelectorAll('.sidebar-header-btn');
+    const themeBtn = document.querySelector('.sidebar-btn-theme');
     
-    headerBtns.forEach((btn, index) => {
-        btn.addEventListener('click', function() {
-            const themeBtn = document.querySelector('.theme-toggle');
-            
-            switch(index) {
-                case 0: // Theme toggle
-                    if (themeBtn) themeBtn.click();
-                    break;
-                case 1: // Open ticket
-                    openTicket();
-                    break;
-                case 2: // Notifications
-                    showNotifications();
-                    break;
-                case 3: // Direct messages
-                    openMessages();
-                    break;
+    if (themeBtn) {
+        themeBtn.addEventListener('click', function() {
+            if (window.themeManager) {
+                themeManager.toggle();
             }
         });
-    });
+    }
 }
 
 function openTicket() {

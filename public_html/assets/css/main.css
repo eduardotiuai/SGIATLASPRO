@@ -457,6 +457,14 @@ html[data-theme="dark"] .sidebar-logo-icon {
     display: none;
 }
 
+.sidebar.collapsed .sidebar-header-actions .sidebar-header-btn:not(.sidebar-btn-notif) {
+    display: none !important;
+}
+
+.sidebar.collapsed .sidebar-header-actions .sidebar-btn-notif {
+    display: flex !important;
+}
+
 .sidebar-toggle {
     background: none;
     border: none;
@@ -578,6 +586,32 @@ html[data-theme="dark"] .sidebar-item:hover .sidebar-item-text {
 
 .user-menu-clickable:hover {
     background-color: rgba(255, 255, 255, 0.1);
+}
+
+.user-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.user-info .user-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-info .user-role {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar.collapsed .user-info {
+    display: none;
 }
 
 .user-dropdown {
