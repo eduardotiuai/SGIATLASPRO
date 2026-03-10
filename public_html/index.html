@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGI ATLAS - Acesso ao Sistema</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="stylesheet" href="assets/css/main.css?v=1.8.0">
+    <link rel="stylesheet" href="assets/css/main.css?v=1.9.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
         <!-- Brand Side -->
         <div class="auth-brand">
             <!-- Background image with overlay -->
-            <img src="assets/img/imglogin.jpg?v=1.8.0" alt="Arquitetura moderna" class="auth-brand-bg">
+            <img src="assets/img/imglogin.jpg?v=1.9.0" alt="Arquitetura moderna" class="auth-brand-bg">
             <div class="auth-brand-overlay"></div>
             
             <div class="auth-logo">SA</div>
@@ -35,67 +35,29 @@
         <!-- Form Side -->
         <div class="auth-form-container">
             <form class="auth-form" id="loginForm" onsubmit="handleLogin(event)">
-                <h1 class="auth-heading">Bem-vindo</h1>
-                <p class="auth-description">Entre com suas credenciais para acessar o sistema</p>
+                <h1 class="auth-heading">Bem-vindo ao SGI ATLAS</h1>
+                <p class="auth-description">Sistema de Gestão Integrada com IA</p>
 
-                <!-- Email Field -->
-                <div class="form-group">
-                    <label class="form-label" for="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        class="form-input"
-                        placeholder="usuario@tiiuai.com.br"
-                        required
-                        autocomplete="email"
-                    />
+                <!-- Modules Carousel -->
+                <div style="margin: 2.5rem 0; padding: 1.5rem; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); min-height: 140px; display: flex; align-items: center; justify-content: center;">
+                    <div style="text-align: center; width: 100%;">
+                        <div id="moduleCarousel" style="font-size: 3rem; margin-bottom: 1rem;">📊</div>
+                        <div id="moduleNameCarousel" style="font-size: 1.1rem; font-weight: 600; color: white; margin-bottom: 0.5rem;">Controle Financeiro</div>
+                        <div id="moduleDescCarousel" style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.7);">Gestão completa de finanças e orçamentos</div>
+                    </div>
                 </div>
 
-                <!-- Password Field -->
-                <div class="form-group">
-                    <label class="form-label" for="password">Senha</label>
-                    <input
-                        type="password"
-                        id="password"
-                        class="form-input"
-                        placeholder="Digite sua senha"
-                        required
-                        autocomplete="current-password"
-                    />
-                </div>
-
-                <!-- Remember & Forgot -->
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; font-size: 0.875rem;">
-                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                        <input type="checkbox" style="width: 16px; height: 16px; cursor: pointer;" />
-                        <span>Lembrar de mim</span>
-                    </label>
-                    <button type="button" class="btn-text" style="padding: 0;">Esqueceu a senha?</button>
-                </div>
-
-                <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary">
-                    Acessar Sistema
+                <!-- Access Button -->
+                <button type="button" class="btn btn-primary" onclick="accessAsVisitor()" style="width: 100%;">
+                    <i class="fas fa-sign-in-alt" style="margin-right: 0.5rem;"></i>
+                    Entrar no Sistema
                 </button>
 
                 <!-- Request Access Button -->
-                <button type="button" class="btn btn-secondary" onclick="requestAccess()" style="margin-top: 0.75rem;">
+                <button type="button" class="btn btn-secondary" onclick="requestAccess()" style="margin-top: 0.75rem; width: 100%;">
                     <i class="fas fa-hand-paper" style="margin-right: 0.5rem;"></i>
                     Solicitar Acesso
                 </button>
-
-                <!-- Demo Info -->
-                <div style="margin-top: 2rem; padding: 1rem; background-color: var(--accent-light); border-radius: var(--radius); text-align: center;">
-                    <p style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-tertiary); margin-bottom: 0.5rem;">
-                        Credenciais de Teste
-                    </p>
-                    <p style="font-size: 0.875rem; color: var(--text-primary); margin: 0.25rem 0;">
-                        usuario@tiiuai.com.br
-                    </p>
-                    <p style="font-size: 0.875rem; color: var(--text-primary); margin: 0.25rem 0;">
-                        123456
-                    </p>
-                </div>
             </form>
 
             <!-- Footer -->
@@ -105,7 +67,53 @@
         </div>
     </div>
 
-    <script src="assets/js/theme.js?v=1.8.0"></script>
-    <script src="assets/js/auth.js?v=1.8.0"></script>
+    <script src="assets/js/theme.js?v=1.9.0"></script>
+    <script src="assets/js/auth.js?v=1.9.0"></script>
+    <script>
+        // Module Carousel Animation
+        const modules = [
+            { icon: '📊', name: 'Controle Financeiro', desc: 'Gestão completa de finanças e orçamentos' },
+            { icon: '🏭', name: 'Controle de Logística', desc: 'Rastreamento e gerenciamento de entrega' },
+            { icon: '👥', name: 'Gestão de RH', desc: 'Administração de recursos humanos e folha' },
+            { icon: '📦', name: 'Estoque', desc: 'Controle de inventário e produtos' },
+            { icon: '📞', name: 'Atendimento', desc: 'Sistema de tickets e suporte ao cliente' },
+            { icon: '⚙️', name: 'Configurações', desc: 'Personalização do sistema e preferências' }
+        ];
+
+        let currentModuleIndex = 0;
+        const carousel = document.getElementById('moduleCarousel');
+        const name = document.getElementById('moduleNameCarousel');
+        const desc = document.getElementById('moduleDescCarousel');
+
+        function rotateModules() {
+            const module = modules[currentModuleIndex];
+            
+            // Fade out
+            carousel.style.opacity = '0.5';
+            name.style.opacity = '0.5';
+            desc.style.opacity = '0.5';
+
+            setTimeout(() => {
+                carousel.innerHTML = module.icon;
+                name.innerHTML = module.name;
+                desc.innerHTML = module.desc;
+
+                // Fade in
+                carousel.style.opacity = '1';
+                name.style.opacity = '1';
+                desc.style.opacity = '1';
+
+                currentModuleIndex = (currentModuleIndex + 1) % modules.length;
+            }, 300);
+        }
+
+        // Set initial transition
+        carousel.style.transition = 'opacity 0.3s ease-in-out';
+        name.style.transition = 'opacity 0.3s ease-in-out';
+        desc.style.transition = 'opacity 0.3s ease-in-out';
+
+        // Rotate every 5 seconds
+        setInterval(rotateModules, 5000);
+    </script>
 </body>
 </html>

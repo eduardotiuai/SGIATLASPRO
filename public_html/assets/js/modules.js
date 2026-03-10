@@ -112,6 +112,29 @@ const modules = {
         subtitle: 'Gerenciamento de usuários e sistema',
         icon: 'fa-cog',
         construction: true
+    },
+    inicio: {
+        title: 'Início',
+        subtitle: 'Bem-vindo ao SGI ATLAS',
+        icon: 'fa-star'
+    },
+    mensagens: {
+        title: 'Mensagens',
+        subtitle: 'Comunicação interna do sistema',
+        icon: 'fa-envelope',
+        construction: true
+    },
+    calendario: {
+        title: 'Calendário',
+        subtitle: 'Avisos e agendamentos de lembretes',
+        icon: 'fa-calendar',
+        construction: true
+    },
+    suporte: {
+        title: 'Suporte',
+        subtitle: 'Central de atendimento e ajuda',
+        icon: 'fa-life-ring',
+        construction: true
     }
 };
 
@@ -132,7 +155,10 @@ function loadModule(moduleKey) {
 
     // Load content
     if (moduleKey === 'dashboard') {
-        loadDashboard();
+        // Dashboard now in construction
+        loadConstructionPage(module);
+    } else if (moduleKey === 'inicio') {
+        loadHomeModule();
     } else if (module.construction) {
         loadConstructionPage(module);
     }
@@ -361,7 +387,127 @@ function loadConstructionPage(module) {
     contentArea.innerHTML = constructionHTML;
 }
 
+// Load Home/Início Module
+function loadHomeModule() {
+    const contentArea = document.getElementById('contentArea');
+    const user = JSON.parse(sessionStorage.getItem('user') || '{}');
+    const userName = user.name || 'Visitante';
+
+    const homeHTML = `
+        <div class="main-content-section">
+            <!-- Welcome Section -->
+            <div class="card" style="background: linear-gradient(135deg, var(--accent-primary), var(--primary-dark)); color: white; padding: 2rem; margin-bottom: 1.5rem; border-radius: 0.75rem;">
+                <h1 style="font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem;">
+                    👋 Bem-vindo, ${userName}!
+                </h1>
+                <p style="font-size: 1rem; opacity: 0.95;">
+                    Explore os módulos do SGI ATLAS e descubra toda a potência do nossa plataforma de gestão integrada.
+                </p>
+            </div>
+
+            <!-- Version Info Card -->
+            <div class="card" style="padding: 1.5rem; margin-bottom: 1.5rem;">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="width: 3rem; height: 3rem; background: linear-gradient(135deg, var(--accent-primary), #00a8e8); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-rocket" style="color: white; font-size: 1.25rem;"></i>
+                    </div>
+                    <div>
+                        <h2 style="font-size: 1.25rem; font-weight: bold; color: var(--text-primary); margin-bottom: 0.25rem;">Versão do Sistema</h2>
+                        <p style="color: var(--text-secondary);">SGI ATLAS v1.8.0</p>
+                    </div>
+                </div>
+                <div style="background-color: var(--accent-light); border-left: 4px solid var(--accent-primary); padding: 1rem; border-radius: 0.5rem;">
+                    <p style="color: #003d99; font-size: 0.95rem;">
+                        <strong>Status:</strong> Sistema em desenvolvimento ativo. Novas funcionalidades são adicionadas regularmente.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Release Notes -->
+            <div class="card" style="padding: 1.5rem;">
+                <h2 style="font-size: 1.5rem; font-weight: bold; color: var(--text-primary); margin-bottom: 1rem;">
+                    <i class="fas fa-clipboard-list" style="margin-right: 0.5rem;"></i>
+                    Notas da Versão
+                </h2>
+
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <!-- Update 1 -->
+                    <div style="border-left: 4px solid var(--success); padding-left: 1rem;">
+                        <p style="font-size: 0.875rem; color: var(--success); font-weight: 600; margin-bottom: 0.25rem;">
+                            <i class="fas fa-check-circle"></i> v1.8.0 - Atual
+                        </p>
+                        <p style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">Interface Renovada e Novos Módulos</p>
+                        <ul style="list-style: none; padding: 0; font-size: 0.9rem; color: var(--text-secondary);">
+                            <li>✨ Novo módulo "Início" com visão geral do sistema</li>
+                            <li>✨ Adicionados módulos de Mensagens e Calendário</li>
+                            <li>💡 Carrossel de módulos na página de login</li>
+                            <li>🎨 Design atualizado com overlay de imagem moderna</li>
+                            <li>⚡ Acesso rápido ao dashboard sem autenticação</li>
+                        </ul>
+                    </div>
+
+                    <!-- Update 2 -->
+                    <div style="border-left: 4px solid var(--border-color); padding-left: 1rem;">
+                        <p style="font-size: 0.875rem; color: var(--text-secondary); font-weight: 600; margin-bottom: 0.25rem;">
+                            <i class="fas fa-circle" style="font-size: 0.5rem;"></i> v1.7.0
+                        </p>
+                        <p style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">Menu de Usuário no Header</p>
+                        <ul style="list-style: none; padding: 0; font-size: 0.9rem; color: var(--text-secondary);">
+                            <li>👤 Menu do usuário movido para o header</li>
+                            <li>🎯 Sidebar simplificada e minimizada</li>
+                            <li>🔔 Apenas ícone de notificações visível quando compactada</li>
+                        </ul>
+                    </div>
+
+                    <!-- Update 3 -->
+                    <div style="border-left: 4px solid var(--border-color); padding-left: 1rem;">
+                        <p style="font-size: 0.875rem; color: var(--text-secondary); font-weight: 600; margin-bottom: 0.25rem;">
+                            <i class="fas fa-circle" style="font-size: 0.5rem;"></i> v1.6.0
+                        </p>
+                        <p style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">Redesign Visual Completo</p>
+                        <ul style="list-style: none; padding: 0; font-size: 0.9rem; color: var(--text-secondary);">
+                            <li>🎨 Cores redesenhadas (modo claro: azul, modo escuro: cinza)</li>
+                            <li>🌙 Tema dark redesenhado com cinza escuro (#1a1a1a)</li>
+                            <li>💜 Login com violeta moderno e ilustração corporativa</li>
+                            <li>📱 Interface responsiva melhorada</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Features Preview -->
+                <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
+                    <h3 style="font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;"> Módulos Disponíveis </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.75rem;">
+                        <div style="background-color: var(--accent-light); padding: 0.75rem; border-radius: 0.5rem; text-align: center;">
+                            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">⭐</div>
+                            <p style="font-size: 0.875rem; font-weight: 600; color: var(--text- primary);">Início</p>
+                        </div>
+                        <div style="background-color: rgba(0, 0, 0, 0.05); padding: 0.75rem; border-radius: 0.5rem; text-align: center; opacity: 0.7;">
+                            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🏠</div>
+                            <p style="font-size: 0.875rem; font-weight: 600; color: var(--text-secondary);">Dashboard</p>
+                        </div>
+                        <div style="background-color: rgba(0, 0, 0, 0.05); padding: 0.75rem; border-radius: 0.5rem; text-align: center; opacity: 0.7;">
+                            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📧</div>
+                            <p style="font-size: 0.875rem; font-weight: 600; color: var(--text-secondary);">Mensagens</p>
+                        </div>
+                        <div style="background-color: rgba(0, 0, 0, 0.05); padding: 0.75rem; border-radius: 0.5rem; text-align: center; opacity: 0.7;">
+                            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📅</div>
+                            <p style="font-size: 0.875rem; font-weight: 600; color: var(--text-secondary);">Calendário</p>
+                        </div>
+                        <div style="background-color: rgba(0, 0, 0, 0.05); padding: 0.75rem; border-radius: 0.5rem; text-align: center; opacity: 0.7;">
+                            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🆘</div>
+                            <p style="font-size: 0.875rem; font-weight: 600; color: var(--text-secondary);">Suporte</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    contentArea.innerHTML = homeHTML;
+}
+
 // Initialize dashboard on load
 document.addEventListener('DOMContentLoaded', function() {
-    loadModule('dashboard');
+    loadModule('inicio');
 });

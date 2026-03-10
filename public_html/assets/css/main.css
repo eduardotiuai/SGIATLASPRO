@@ -401,6 +401,12 @@ html[data-theme="dark"] .sidebar {
 
 .sidebar.collapsed {
     flex: 0 0 80px;
+    overflow-y: hidden; /* remove scrollbar when collapsed */
+}
+
+/* make logo clickable for expand */
+.sidebar-logo {
+    cursor: pointer;
 }
 
 .sidebar-header {
@@ -748,6 +754,25 @@ html[data-theme="dark"] .header {
 
 .user-dropdown-header.active {
     display: flex;
+}
+
+/* theme toggle inside user dropdown */
+.user-dropdown-header .theme-toggle-item {
+    padding: 0.75rem 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border: none;
+    background: none;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.user-dropdown-header .theme-toggle-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
 }
 
 .user-info-header {

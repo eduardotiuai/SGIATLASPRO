@@ -41,6 +41,7 @@ function loadUserProfile(user) {
 }
 
 // Sidebar Toggle
+const toggleButton = document.getElementById('toggleSidebar');
 document.getElementById('toggleSidebar')?.addEventListener('click', function() {
     const sidebar = document.getElementById('sidebar');
     const isCollapsed = sidebar.classList.contains('collapsed');
@@ -53,6 +54,21 @@ document.getElementById('toggleSidebar')?.addEventListener('click', function() {
         localStorage.setItem('sidebarCollapsed', 'true');
     }
 });
+
+// Clicking logo should also toggle sidebar
+const sidebarLogo = document.querySelector('.sidebar-logo');
+if (sidebarLogo) {
+    sidebarLogo.addEventListener('click', function() {
+        toggleButton?.click();
+    });
+}
+
+// Theme toggle helper
+function toggleTheme() {
+    if (window.themeManager) {
+        themeManager.toggle();
+    }
+}
 
 // Restore sidebar state
 document.addEventListener('DOMContentLoaded', function() {

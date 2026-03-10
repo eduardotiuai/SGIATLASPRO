@@ -115,3 +115,22 @@ function requestAccess() {
     // TODO: Integrar com API para enviar solicitação
     showAlert('Solicitação de acesso enviada com sucesso! Você será notificado em breve.', 'success');
 }
+
+// Access as Visitor (without credentials)
+function accessAsVisitor() {
+    const visitorUser = {
+        id: 0,
+        name: 'Visitante',
+        email: 'visitante@sgiatlaspro.local',
+        role: 'visitor',
+        company: 'SGI ATLAS',
+        avatar: 'https://ui-avatars.com/api/?name=Visitante&background=6366f1&color=fff',
+        department: 'Visitante'
+    };
+
+    sessionStorage.setItem('user', JSON.stringify(visitorUser));
+    sessionStorage.setItem('authenticated', 'true');
+
+    // Redirect to dashboard
+    window.location.href = 'dashboard.html?module=inicio';
+}
