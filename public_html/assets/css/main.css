@@ -6,9 +6,9 @@
 
 :root {
     /* Professional Color Palette */
-    --primary-dark: #005bb3;      /* Professional blue - light mode */
+    --primary-dark: #3a3a3a;      /* Dark gray - logo background */
     --primary-light: #ffffff;     /* Pure white - light bg */
-    --secondary-dark: #1e90ff;    /* Bright blue - sidebar light mode */
+    --secondary-dark: #0052cc;    /* Blue - accent and borders */
     --secondary-light: #d4e5f7;   /* Light blue - borders */
     
     /* Accent Colors - Minimal */
@@ -166,6 +166,11 @@ body {
     padding: 3rem;
     position: relative;
     overflow: hidden;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(107, 33, 168, 0.4) 0%, transparent 50%),
+        linear-gradient(135deg, #6b21a8 0%, #a855f7 100%);
+    background-size: 100% 100%;
 }
 
 .auth-brand::before {
@@ -218,6 +223,8 @@ body {
     align-items: center;
     justify-content: center;
     padding: 3rem;
+    background: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%);
+    position: relative;
 }
 
 .auth-form {
@@ -309,18 +316,35 @@ html[data-theme="dark"] .form-textarea {
 }
 
 .btn-primary {
-    background-color: var(--accent-primary);
+    background-color: #0052cc;
     color: white;
     width: 100%;
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
 .btn-primary:hover {
-    background-color: var(--accent-hover);
-    box-shadow: var(--shadow);
+    background-color: #0047b8;
+    box-shadow: 0 4px 12px rgba(0, 82, 204, 0.3);
 }
 
 .btn-primary:active {
     transform: scale(0.98);
+    background-color: #003fa5;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #0052cc;
+    border: 2px solid #0052cc;
+    width: 100%;
+    font-weight: 600;
+}
+
+.btn-secondary:hover {
+    background-color: #0052cc;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 82, 204, 0.2);
 }
 
 .btn-text {
@@ -368,11 +392,36 @@ html[data-theme="dark"] .sidebar {
 }
 
 .sidebar-header {
-    padding: 1.5rem;
+    padding: 1rem 1.5rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.sidebar-header-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: auto;
+}
+
+.sidebar-header-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all var(--transition);
+    font-size: 1rem;
+}
+
+.sidebar-header-btn:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .sidebar-logo {
@@ -388,17 +437,19 @@ html[data-theme="dark"] .sidebar {
 .sidebar-logo-icon {
     width: 32px;
     height: 32px;
-    background: rgba(0, 82, 204, 0.2);
+    background: #3a3a3a;
+    border: 2px solid #0052cc;
     border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    color: #0052cc;
+    color: #ffffff;
 }
 
 html[data-theme="dark"] .sidebar-logo-icon {
-    background: rgba(255, 255, 255, 0.1);
+    background: #2a2a2a;
+    border-color: rgba(255, 255, 255, 0.3);
     color: #ffffff;
 }
 
@@ -507,8 +558,76 @@ html[data-theme="dark"] .sidebar-item:hover .sidebar-item-text {
 }
 
 .sidebar-footer {
-    padding: 1.5rem;
+    padding: 1rem 1.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.user-menu-clickable {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    padding: 0.75rem;
+    border-radius: 6px;
+    transition: all var(--transition);
+    position: relative;
+}
+
+.user-menu-clickable:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.user-dropdown {
+    position: absolute;
+    bottom: 100%;
+    left: 1.5rem;
+    right: 1.5rem;
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 8px;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+    display: none;
+    flex-direction: column;
+    z-index: 1000;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+}
+
+.user-dropdown.active {
+    display: flex;
+}
+
+.user-dropdown-item {
+    padding: 0.75rem 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    transition: all var(--transition);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border: none;
+    background: none;
+    font-size: 0.875rem;
+    width: 100%;
+    text-align: left;
+}
+
+.user-dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.user-dropdown-item:last-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #dc2626;
+}
+
+.user-dropdown-item:last-child:hover {
+    background-color: rgba(220, 38, 38, 0.1);
 }
 
 /* ================================================

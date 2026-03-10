@@ -64,7 +64,48 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Load initial dashboard
     loadModule('dashboard', null);
+
+    // Attach sidebar header buttons
+    attachSidebarHeaderButtons();
 });
+
+// Sidebar Header Buttons
+function attachSidebarHeaderButtons() {
+    const headerBtns = document.querySelectorAll('.sidebar-header-btn');
+    
+    headerBtns.forEach((btn, index) => {
+        btn.addEventListener('click', function() {
+            const themeBtn = document.querySelector('.theme-toggle');
+            
+            switch(index) {
+                case 0: // Theme toggle
+                    if (themeBtn) themeBtn.click();
+                    break;
+                case 1: // Open ticket
+                    openTicket();
+                    break;
+                case 2: // Notifications
+                    showNotifications();
+                    break;
+                case 3: // Direct messages
+                    openMessages();
+                    break;
+            }
+        });
+    });
+}
+
+function openTicket() {
+    alert('Funcionalidade para abrir chamado será implementada em breve');
+}
+
+function showNotifications() {
+    alert('Notificações - funcionalidade será implementada em breve');
+}
+
+function openMessages() {
+    alert('Mensagens - funcionalidade será implementada em breve');
+}
 
 // Settings Modal
 function openSettings() {
@@ -83,9 +124,36 @@ document.addEventListener('click', function(event) {
     }
 });
 
+// User Dropdown Menu
+function toggleUserDropdown() {
+    const dropdown = document.getElementById('userDropdown');
+    if (dropdown) {
+        dropdown.classList.toggle('active');
+    }
+}
+
+function changeProfilePhoto() {
+    alert('Funcionalidade para trocar foto será implementada em breve');
+    toggleUserDropdown();
+}
+
+function changePassword() {
+    alert('Funcionalidade para alterar senha será implementada em breve');
+    toggleUserDropdown();
+}
+
 // Logout
 function logout() {
     sessionStorage.removeItem('user');
     sessionStorage.removeItem('authenticated');
     window.location.href = 'index.html';
 }
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(event) {
+    const userMenu = document.querySelector('.user-menu-clickable');
+    const dropdown = document.getElementById('userDropdown');
+    if (userMenu && dropdown && !userMenu.contains(event.target)) {
+        dropdown.classList.remove('active');
+    }
+});

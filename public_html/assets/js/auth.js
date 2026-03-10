@@ -99,3 +99,19 @@ function showAlert(message, type = 'info') {
     // Remove alert after 4 seconds
     setTimeout(() => alertDiv.remove(), 4000);
 }
+
+// Request Access Function
+function requestAccess() {
+    const email = document.getElementById('email').value || '';
+    const message = email 
+        ? `Solicitar acesso para ${email}?`
+        : 'Por favor, preencha seu email para solicitar acesso.';
+    
+    if (!email) {
+        showAlert('Por favor, preencha seu email primeiro', 'error');
+        return;
+    }
+
+    // TODO: Integrar com API para enviar solicitação
+    showAlert('Solicitação de acesso enviada com sucesso! Você será notificado em breve.', 'success');
+}
