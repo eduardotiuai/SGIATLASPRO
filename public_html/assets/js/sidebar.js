@@ -1,4 +1,8 @@
-// Check if user is authenticated
+/* ================================================
+   SGI ATLAS - Sidebar Management
+   ================================================ */
+
+// Check authentication and load user profile
 function checkAuthentication() {
     const authenticated = sessionStorage.getItem('authenticated');
     const user = sessionStorage.getItem('user');
@@ -8,67 +12,70 @@ function checkAuthentication() {
         return;
     }
 
-    // Load user data
     const userData = JSON.parse(user);
     loadUserProfile(userData);
 }
 
-// Load user profile information
+// Load user profile
 function loadUserProfile(user) {
-    document.getElementById('userName').textContent = user.name;
-    document.getElementById('userAvatar').src = user.avatar;
-    document.getElementById('userRole').textContent = 
-        user.role === 'admin' ? 'Administrador' : 
-        user.role === 'manager' ? 'Gerente' : 
-        'Usuário';
+    const userName = user.name || 'Usuário';
+    const userInitials = userName.split(' ').map(n => n[0]).join('').toUpperCase();
+    
+    // Update all user avatar elements
+    document.querySelectorAll('#userAvatar, #userAvatarHeader').forEach(el => {
+        el.textContent = userInitials;
+    });
+    
+    // Update user name
+    document.querySelectorAll('#userName').forEach(el => {
+        el.textContent = userName;
+    });
+    
+    // Update user role
+    document.querySelectorAll('#userRole').forEach(el => {
+        el.textContent = user.role === 'admin' ? 'System Admin' : ' Usuário';
+    });
 }
 
-// Toggle Sidebar (Collapse/Expand)
+// Sidebar Toggle
 document.getElementById('toggleSidebar')?.addEventListener('click', function() {
     const sidebar = document.getElementById('sidebar');
-    const toggleBtn = document.getElementById('toggleSidebar');
     const isCollapsed = sidebar.classList.contains('collapsed');
 
     if (isCollapsed) {
-        // Expand sidebar
         sidebar.classList.remove('collapsed');
-        sidebar.style.width = '16rem';
-        toggleBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
         localStorage.setItem('sidebarCollapsed', 'false');
     } else {
-        // Collapse sidebar
         sidebar.classList.add('collapsed');
-        sidebar.style.width = '80px';
-        toggleBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
         localStorage.setItem('sidebarCollapsed', 'true');
     }
 });
 
-// Load sidebar state
+// Restore sidebar state
 document.addEventListener('DOMContentLoaded', function() {
     checkAuthentication();
 
     const isSidebarCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
     const sidebar = document.getElementById('sidebar');
-    const toggleBtn = document.getElementById('toggleSidebar');
 
     if (isSidebarCollapsed) {
         sidebar.classList.add('collapsed');
-        sidebar.style.width = '80px';
-        toggleBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
     }
+
+    // Load initial dashboard
+    loadModule('dashboard', null);
 });
 
-// Settings Modal Functions
+// Settings Modal
 function openSettings() {
-    document.getElementById('settingsModal').classList.remove('hidden');
+    document.getElementById('settingsModal').classList.add('active');
 }
 
 function closeSettings() {
-    document.getElementById('settingsModal').classList.add('hidden');
+    document.getElementById('settingsModal').classList.remove('active');
 }
 
-// Close modal when clicking outside
+// Close modal on backdrop click
 document.addEventListener('click', function(event) {
     const modal = document.getElementById('settingsModal');
     if (event.target === modal) {
@@ -76,15 +83,9 @@ document.addEventListener('click', function(event) {
     }
 });
 
-// Logout Function
+// Logout
 function logout() {
-    // Clear session
     sessionStorage.removeItem('user');
     sessionStorage.removeItem('authenticated');
-
-    // Show logout message
-    alert('Você foi desconectado com sucesso!');
-
-    // Redirect to login
     window.location.href = 'index.html';
 }

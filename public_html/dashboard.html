@@ -1,431 +1,173 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGI ATLAS - Dashboard</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        body {
-            background: #f8f9fa;
-        }
-        .sidebar {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
-            border-right: 1px solid #e9ecef;
-            display: flex;
-            flex-direction: column;
-        }
-        .sidebar.collapsed {
-            width: 80px !important;
-        }
-        .sidebar-content {
-            flex: 1;
-            overflow-y: auto;
-        }
-        .sidebar-content::-webkit-scrollbar {
-            width: 6px;
-        }
-        .sidebar-content::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .sidebar-content::-webkit-scrollbar-thumb {
-            background: #dee2e6;
-            border-radius: 3px;
-        }
-        .sidebar-content::-webkit-scrollbar-thumb:hover {
-            background: #adb5bd;
-        }
-        .menu-item {
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        .menu-item:hover {
-            background: #f1f3f5;
-        }
-        .menu-item.active {
-            background: linear-gradient(90deg, #e7f4ff 0%, transparent 100%);
-            border-right: 3px solid #0066cc;
-        }
-        .menu-item.active .menu-link {
-            color: #0066cc;
-            font-weight: 600;
-        }
-        .menu-link {
-            transition: all 0.3s ease;
-            color: #495057;
-        }
-        .main-content {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            flex: 1;
-            overflow-y: auto;
-        }
-        .construction-message {
-            animation: slideUp 0.5s ease;
-        }
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .header {
-            background: white;
-            border-bottom: 1px solid #e9ecef;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-        }
-        .user-profile {
-            display: flex;
-            align-items: center;
-            padding: 1rem;
-            border-top: 1px solid #e9ecef;
-            margin-top: auto;
-            gap: 12px;
-        }
-        .user-profile.collapsed .profile-text {
-            display: none;
-        }
-        .profile-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #e9ecef;
-        }
-        .profile-text {
-            flex: 1;
-            min-width: 0;
-        }
-        .profile-name {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: #212529;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .profile-role {
-            font-size: 0.75rem;
-            color: #6c757d;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .settings-icon {
-            cursor: pointer;
-            transition: all 0.3s ease;
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-            color: #6c757d;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .settings-icon:hover {
-            background: #e9ecef;
-            color: #0066cc;
-        }
-        .sidebar.collapsed .settings-icon {
-            padding: 0.75rem;
-        }
-        .toggle-btn {
-            transition: all 0.3s ease;
-            color: #495057;
-        }
-        .toggle-btn:hover {
-            color: #0066cc;
-        }
-        .module-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-        @media (max-width: 1024px) {
-            .module-grid {
-                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            }
-        }
-        @media (max-width: 640px) {
-            .module-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        .stat-card {
-            background: white;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            border: 1px solid #e9ecef;
-            transition: all 0.3s ease;
-        }
-        .stat-card:hover {
-            border-color: #0066cc;
-            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.1);
-        }
-        .tooltip {
-            position: relative;
-        }
-        .tooltip::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #212529;
-            color: white;
-            padding: 0.5rem 0.75rem;
-            border-radius: 0.375rem;
-            font-size: 0.75rem;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            margin-bottom: 8px;
-            z-index: 10;
-        }
-        .sidebar.collapsed .tooltip:hover::after {
-            opacity: 1;
-        }
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.5;
-            }
-        }
-        .animate-pulse {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-    </style>
 </head>
-<body class="bg-gray-50">
-    <div class="flex h-screen">
+<body>
+    <div class="app-layout">
         <!-- Sidebar -->
-        <div class="sidebar w-64 flex flex-col bg-white" id="sidebar">
-            <!-- Logo Section -->
-            <div class="p-6 border-b border-gray-200">
-                <div class="flex items-center justify-between">
-                    <div id="logoText" class="flex flex-col">
-                        <span class="text-lg font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">
-                            SGI ATLAS
-                        </span>
-                        <span class="text-xs text-gray-500">TI UAI</span>
-                    </div>
-                    <button
-                        id="toggleSidebar"
-                        class="toggle-btn p-2 rounded-lg hover:bg-gray-100"
-                        title="Recolher sidebar"
-                    >
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
+        <aside class="sidebar" id="sidebar">
+            <!-- Header -->
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">SA</div>
+                    <span class="sidebar-logo-text">SGI ATLAS</span>
                 </div>
-            </div>
-
-            <!-- Menu Content -->
-            <div class="sidebar-content px-3 py-4 flex-1">
-                <div class="space-y-4">
-                    <div>
-                        <h3 class="px-3 py-2 text-xs font-semibold text-gray-600 uppercase tracking-wider">Administrativo</h3>
-                        <nav class="space-y-1">
-                            <a href="#" onclick="loadModule('dashboard')" class="menu-item menu-link hover:bg-gray-100 flex items-center gap-3 px-3 py-2 rounded-lg active" data-module="dashboard">
-                                <i class="fas fa-home w-5 text-center"></i>
-                                <span class="menu-text">Dashboard</span>
-                            </a>
-                            <a href="#" onclick="loadModule('cadastros')" class="menu-item menu-link hover:bg-gray-100 flex items-center gap-3 px-3 py-2 rounded-lg" data-module="cadastros">
-                                <i class="fas fa-address-card w-5 text-center"></i>
-                                <span class="menu-text">Cadastros</span>
-                            </a>
-                            <a href="#" onclick="loadModule('configuracoes')" class="menu-item menu-link hover:bg-gray-100 flex items-center gap-3 px-3 py-2 rounded-lg" data-module="configuracoes">
-                                <i class="fas fa-cog w-5 text-center"></i>
-                                <span class="menu-text">Configurações</span>
-                            </a>
-                        </nav>
-                    </div>
-
-                    <div>
-                        <h3 class="px-3 py-2 text-xs font-semibold text-gray-600 uppercase tracking-wider">Comercial</h3>
-                        <nav class="space-y-1">
-                            <a href="#" onclick="loadModule('comercial')" class="menu-item menu-link hover:bg-gray-100 flex items-center gap-3 px-3 py-2 rounded-lg" data-module="comercial">
-                                <i class="fas fa-chart-line w-5 text-center"></i>
-                                <span class="menu-text">Comercial</span>
-                            </a>
-                            <a href="#" onclick="loadModule('licitacoes')" class="menu-item menu-link hover:bg-gray-100 flex items-center gap-3 px-3 py-2 rounded-lg" data-module="licitacoes">
-                                <i class="fas fa-gavel w-5 text-center"></i>
-                                <span class="menu-text">Licitações</span>
-                            </a>
-                            <a href="#" onclick="loadModule('contratos')" class="menu-item menu-link hover:bg-gray-100 flex items-center gap-3 px-3 py-2 rounded-lg" data-module="contratos">
-                                <i class="fas fa-file-contract w-5 text-center"></i>
-                                <span class="menu-text">Contratos</span>
-                            </a>
-                        </nav>
-                    </div>
-
-                    <div>
-                        <h3 class="px-3 py-2 text-xs font-semibold text-gray-600 uppercase tracking-wider">Financeiro</h3>
-                        <nav class="space-y-1">
-                            <a href="#" onclick="loadModule('financeiro')" class="menu-item menu-link hover:bg-gray-100 flex items-center gap-3 px-3 py-2 rounded-lg" data-module="financeiro">
-                                <i class="fas fa-wallet w-5 text-center"></i>
-                                <span class="menu-text">Financeiro</span>
-                            </a>
-                            <a href="#" onclick="loadModule('faturamento')" class="menu-item menu-link hover:bg-gray-100 flex items-center gap-3 px-3 py-2 rounded-lg" data-module="faturamento">
-                                <i class="fas fa-receipt w-5 text-center"></i>
-                                <span class="menu-text">Faturamento</span>
-                            </a>
-                            <a href="#" onclick="loadModule('controladoria')" class="menu-item menu-link hover:bg-gray-100 flex items-center gap-3 px-3 py-2 rounded-lg" data-module="controladoria">
-                                <i class="fas fa-chart-pie w-5 text-center"></i>
-                                <span class="menu-text">Controladoria</span>
-                            </a>
-                        </nav>
-                    </div>
-
-                    <div>
-                        <h3 class="px-3 py-2 text-xs font-semibold text-gray-600 uppercase tracking-wider">Operação</h3>
-                        <nav class="space-y-1">
-                            <a href="#" onclick="loadModule('operacao')" class="menu-item menu-link hover:bg-gray-100 flex items-center gap-3 px-3 py-2 rounded-lg" data-module="operacao">
-                                <i class="fas fa-cogs w-5 text-center"></i>
-                                <span class="menu-text">Operação</span>
-                            </a>
-                            <a href="#" onclick="loadModule('manutencao')" class="menu-item menu-link hover:bg-gray-100 flex items-center gap-3 px-3 py-2 rounded-lg" data-module="manutencao">
-                                <i class="fas fa-tools w-5 text-center"></i>
-                                <span class="menu-text">Manutenção</span>
-                            </a>
-                            <a href="#" onclick="loadModule('qualidade')" class="menu-item menu-link hover:bg-gray-100 flex items-center gap-3 px-3 py-2 rounded-lg" data-module="qualidade">
-                                <i class="fas fa-check-circle w-5 text-center"></i>
-                                <span class="menu-text">Qualidade</span>
-                            </a>
-                        </nav>
-                    </div>
-
-                    <div>
-                        <h3 class="px-3 py-2 text-xs font-semibold text-gray-600 uppercase tracking-wider">Supply Chain</h3>
-                        <nav class="space-y-1">
-                            <a href="#" onclick="loadModule('compras')" class="menu-item menu-link hover:bg-gray-100 flex items-center gap-3 px-3 py-2 rounded-lg" data-module="compras">
-                                <i class="fas fa-shopping-cart w-5 text-center"></i>
-                                <span class="menu-text">Compras</span>
-                            </a>
-                            <a href="#" onclick="loadModule('estoque')" class="menu-item menu-link hover:bg-gray-100 flex items-center gap-3 px-3 py-2 rounded-lg" data-module="estoque">
-                                <i class="fas fa-boxes w-5 text-center"></i>
-                                <span class="menu-text">Estoque</span>
-                            </a>
-                            <a href="#" onclick="loadModule('almoxarifado')" class="menu-item menu-link hover:bg-gray-100 flex items-center gap-3 px-3 py-2 rounded-lg" data-module="almoxarifado">
-                                <i class="fas fa-warehouse w-5 text-center"></i>
-                                <span class="menu-text">Almoxarifado</span>
-                            </a>
-                            <a href="#" onclick="loadModule('logistica')" class="menu-item menu-link hover:bg-gray-100 flex items-center gap-3 px-3 py-2 rounded-lg" data-module="logistica">
-                                <i class="fas fa-truck w-5 text-center"></i>
-                                <span class="menu-text">Logística</span>
-                            </a>
-                            <a href="#" onclick="loadModule('suprimentos')" class="menu-item menu-link hover:bg-gray-100 flex items-center gap-3 px-3 py-2 rounded-lg" data-module="suprimentos">
-                                <i class="fas fa-dolly w-5 text-center"></i>
-                                <span class="menu-text">Suprimentos</span>
-                            </a>
-                            <a href="#" onclick="loadModule('frotas')" class="menu-item menu-link hover:bg-gray-100 flex items-center gap-3 px-3 py-2 rounded-lg" data-module="frotas">
-                                <i class="fas fa-van-shuttle w-5 text-center"></i>
-                                <span class="menu-text">Frotas</span>
-                            </a>
-                        </nav>
-                    </div>
-
-                    <div>
-                        <h3 class="px-3 py-2 text-xs font-semibold text-gray-600 uppercase tracking-wider">Serviços</h3>
-                        <nav class="space-y-1">
-                            <a href="#" onclick="loadModule('atendimentos')" class="menu-item menu-link hover:bg-gray-100 flex items-center gap-3 px-3 py-2 rounded-lg" data-module="atendimentos">
-                                <i class="fas fa-headset w-5 text-center"></i>
-                                <span class="menu-text">Atendimentos</span>
-                            </a>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-
-            <!-- User Profile Section -->
-            <div class="border-t border-gray-200">
-                <div class="user-profile">
-                    <img id="userAvatar" src="https://ui-avatars.com/api/?name=Usuário&background=0066cc&color=fff" alt="Avatar" class="profile-avatar">
-                    <div class="profile-text">
-                        <div class="profile-name" id="userName">Usuário</div>
-                        <div class="profile-role" id="userRole">Admin</div>
-                    </div>
-                    <button class="settings-icon tooltip" data-tooltip="Configurações" onclick="openSettings()">
-                        <i class="fas fa-cog"></i>
-                    </button>
-                </div>
-
-                <!-- Logout Button -->
-                <button onclick="logout()" class="w-full text-left px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg flex items-center gap-3 transition-colors">
-                    <i class="fas fa-sign-out-alt w-5"></i>
-                    <span class="menu-text">Sair</span>
+                <button class="sidebar-toggle" id="toggleSidebar" title="Recolher">
+                    <i class="fas fa-chevron-left"></i>
                 </button>
             </div>
-        </div>
 
-        <!-- Main Content -->
-        <div class="flex-1 flex flex-col">
-            <!-- Header -->
-            <div class="header px-8 py-4 flex items-center justify-between">
-                <div>
-                    <h1 id="pageTitle" class="text-2xl font-bold text-gray-900">Dashboard</h1>
-                    <p id="pageSubtitle" class="text-sm text-gray-600 mt-1">Bem-vindo ao SGI ATLAS</p>
+            <!-- Menu -->
+            <nav class="sidebar-menu" id="sidebarMenu">
+                <!-- Administrativo -->
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Administrativo</div>
+                    <a href="#" onclick="loadModule('dashboard', event)" class="sidebar-item active" data-module="dashboard">
+                        <i class="sidebar-item-icon fas fa-home"></i>
+                        <span class="sidebar-item-text">Dashboard</span>
+                    </a>
+                    <a href="#" onclick="loadModule('cadastros', event)" class="sidebar-item" data-module="cadastros">
+                        <i class="sidebar-item-icon fas fa-address-card"></i>
+                        <span class="sidebar-item-text">Cadastros</span>
+                    </a>
+                    <a href="#" onclick="loadModule('qualidade', event)" class="sidebar-item" data-module="qualidade">
+                        <i class="sidebar-item-icon fas fa-check-circle"></i>
+                        <span class="sidebar-item-text">Qualidade</span>
+                    </a>
+                    <a href="#" onclick="loadModule('licitacoes', event)" class="sidebar-item" data-module="licitacoes">
+                        <i class="sidebar-item-icon fas fa-gavel"></i>
+                        <span class="sidebar-item-text">Licitações</span>
+                    </a>
+                    <a href="#" onclick="loadModule('controladoria', event)" class="sidebar-item" data-module="controladoria">
+                        <i class="sidebar-item-icon fas fa-chart-pie"></i>
+                        <span class="sidebar-item-text">Controladoria</span>
+                    </a>
                 </div>
-                <div class="flex items-center gap-4">
-                    <button class="p-2 hover:bg-gray-100 rounded-lg text-gray-600 transition-colors">
-                        <i class="fas fa-bell text-lg"></i>
-                    </button>
-                    <button class="p-2 hover:bg-gray-100 rounded-lg text-gray-600 transition-colors">
-                        <i class="fas fa-search text-lg"></i>
-                    </button>
+
+                <!-- Comercial -->
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Comercial</div>
+                    <a href="#" onclick="loadModule('comercial', event)" class="sidebar-item" data-module="comercial">
+                        <i class="sidebar-item-icon fas fa-chart-line"></i>
+                        <span class="sidebar-item-text">Comercial</span>
+                    </a>
+                    <a href="#" onclick="loadModule('faturamento', event)" class="sidebar-item" data-module="faturamento">
+                        <i class="sidebar-item-icon fas fa-receipt"></i>
+                        <span class="sidebar-item-text">Faturamento</span>
+                    </a>
+                    <a href="#" onclick="loadModule('contratos', event)" class="sidebar-item" data-module="contratos">
+                        <i class="sidebar-item-icon fas fa-file-contract"></i>
+                        <span class="sidebar-item-text">Contratos</span>
+                    </a>
                 </div>
+
+                <!-- Operacional -->
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Operacional</div>
+                    <a href="#" onclick="loadModule('operacao', event)" class="sidebar-item" data-module="operacao">
+                        <i class="sidebar-item-icon fas fa-cogs"></i>
+                        <span class="sidebar-item-text">Operação</span>
+                    </a>
+                    <a href="#" onclick="loadModule('compras', event)" class="sidebar-item" data-module="compras">
+                        <i class="sidebar-item-icon fas fa-shopping-cart"></i>
+                        <span class="sidebar-item-text">Compras</span>
+                    </a>
+                    <a href="#" onclick="loadModule('logistica', event)" class="sidebar-item" data-module="logistica">
+                        <i class="sidebar-item-icon fas fa-truck"></i>
+                        <span class="sidebar-item-text">Logística</span>
+                    </a>
+                    <a href="#" onclick="loadModule('estoque', event)" class="sidebar-item" data-module="estoque">
+                        <i class="sidebar-item-icon fas fa-boxes"></i>
+                        <span class="sidebar-item-text">Estoque</span>
+                    </a>
+                </div>
+
+                <!-- Suporte -->
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Suporte</div>
+                    <a href="#" onclick="loadModule('frotas', event)" class="sidebar-item" data-module="frotas">
+                        <i class="sidebar-item-icon fas fa-van-shuttle"></i>
+                        <span class="sidebar-item-text">Frotas</span>
+                    </a>
+                    <a href="#" onclick="loadModule('atendimentos', event)" class="sidebar-item" data-module="atendimentos">
+                        <i class="sidebar-item-icon fas fa-headset"></i>
+                        <span class="sidebar-item-text">Atendimentos</span>
+                    </a>
+                    <a href="#" onclick="loadModule('suprimentos', event)" class="sidebar-item" data-module="suprimentos">
+                        <i class="sidebar-item-icon fas fa-dolly"></i>
+                        <span class="sidebar-item-text">Suprimentos</span>
+                    </a>
+                    <a href="#" onclick="loadModule('manutencao', event)" class="sidebar-item" data-module="manutencao">
+                        <i class="sidebar-item-icon fas fa-tools"></i>
+                        <span class="sidebar-item-text">Manutenção</span>
+                    </a>
+                    <a href="#" onclick="loadModule('almoxarifado', event)" class="sidebar-item" data-module="almoxarifado">
+                        <i class="sidebar-item-icon fas fa-warehouse"></i>
+                        <span class="sidebar-item-text">Almoxarifado</span>
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Footer -->
+            <div class="sidebar-footer">
+                <div class="user-menu" onclick="openSettings()">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <div>
+                        <div class="user-name" id="userName">Usuário</div>
+                        <div class="user-role" id="userRole">System Admin</div>
+                    </div>
+                </div>
+                <button onclick="logout()" style="width: 100%; margin-top: 0.75rem; padding: 0.75rem; background: none; border: none; color: rgba(255,255,255,0.8); text-align: left; cursor: pointer; border-radius: 6px; transition: all 150ms; border-left: 3px solid transparent;">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                </button>
             </div>
+        </aside>
 
-            <!-- Content Area -->
-            <div class="main-content flex-1 overflow-y-auto px-8 py-6">
+        <!-- Main Layout -->
+        <div class="main-layout">
+            <!-- Header -->
+            <header class="header">
+                <h1 class="header-title" id="pageTitle">Dashboard</h1>
+                <div class="header-actions">
+                    <button class="theme-toggle" title="Alternar tema escuro">🌙</button>
+                    <div class="user-menu" style="cursor: pointer;" onclick="openSettings()">
+                        <div class="user-avatar" id="userAvatarHeader">U</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="main-content" id="mainContent">
                 <div id="contentArea">
-                    <!-- Content will be loaded here -->
+                    <!-- Content loads here -->
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Settings Modal -->
-    <div id="settingsModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4 max-h-96 overflow-y-auto">
-            <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
-                <h2 class="text-lg font-semibold text-gray-900">Configurações</h2>
-                <button onclick="closeSettings()" class="text-gray-600 hover:text-gray-900">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Configurações do Sistema</h2>
+                <button class="modal-close" onclick="closeSettings()">✕</button>
             </div>
-            <div class="p-6 space-y-4">
-                <button onclick="alert('Funcionalidade será ativada em breve!')" class="w-full text-left px-4 py-3 hover:bg-gray-100 rounded-lg transition-colors">
-                    <div class="font-semibold text-gray-900">Gerenciar Usuários</div>
-                    <div class="text-xs text-gray-600">Adicionar, editar ou remover usuários</div>
-                </button>
-                <button onclick="alert('Funcionalidade será ativada em breve!')" class="w-full text-left px-4 py-3 hover:bg-gray-100 rounded-lg transition-colors">
-                    <div class="font-semibold text-gray-900">Controlar Papéis</div>
-                    <div class="text-xs text-gray-600">Definir permissões e acessos</div>
-                </button>
-                <button onclick="alert('Funcionalidade será ativada em breve!')" class="w-full text-left px-4 py-3 hover:bg-gray-100 rounded-lg transition-colors">
-                    <div class="font-semibold text-gray-900">Preferências</div>
-                    <div class="text-xs text-gray-600">Tema, idioma e notificações</div>
-                </button>
-                <button onclick="alert('Funcionalidade será ativada em breve!')" class="w-full text-left px-4 py-3 hover:bg-gray-100 rounded-lg transition-colors">
-                    <div class="font-semibold text-gray-900">Segurança</div>
-                    <div class="text-xs text-gray-600">Alterar senha e 2FA</div>
-                </button>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Preferências</label>
+                    <p style="font-size: 0.875rem; color: var(--text-secondary);">Funcionalidade será ativada em breve...</p>
+                </div>
             </div>
         </div>
     </div>
 
+    <script src="assets/js/theme.js"></script>
     <script src="assets/js/sidebar.js"></script>
     <script src="assets/js/modules.js"></script>
 </body>

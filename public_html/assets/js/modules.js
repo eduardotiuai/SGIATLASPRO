@@ -124,12 +124,8 @@ function loadModule(moduleKey) {
         return;
     }
 
-    // Update page title and subtitle
-    document.getElementById('pageTitle').textContent = module.title;
-    document.getElementById('pageSubtitle').textContent = module.subtitle;
-
     // Update active menu item
-    document.querySelectorAll('.menu-item').forEach(item => {
+    document.querySelectorAll('[data-module]').forEach(item => {
         item.classList.remove('active');
     });
     document.querySelector(`[data-module="${moduleKey}"]`)?.classList.add('active');
@@ -147,152 +143,133 @@ function loadDashboard() {
     const contentArea = document.getElementById('contentArea');
     
     contentArea.innerHTML = `
-        <div class="space-y-6">
-            <!-- Welcome Card -->
-            <div class="bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl p-8 text-white shadow-lg">
-                <h2 class="text-3xl font-bold mb-2">Bem-vindo ao SGI ATLAS!</h2>
-                <p class="text-blue-100">Sistema em construção - selecione um módulo na barra lateral para explorar</p>
+        <div class="main-content-section">
+            <!-- Welcome Section -->
+            <div class="card welcome-card" style="background: linear-gradient(135deg, var(--accent-primary), var(--primary-dark)); color: white; padding: 2rem;">
+                <h2 style="font-size: 1.875rem; font-weight: bold; margin-bottom: 0.5rem;">Bem-vindo ao SGI ATLAS!</h2>
+                <p style="opacity: 0.9;">Sistema Enterprise - Selecione um módulo na barra lateral para explorar funcionalidades</p>
             </div>
 
-            <!-- Stats Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="stat-card">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-gray-600 text-sm font-medium">Módulos</p>
-                            <p class="text-3xl font-bold text-gray-900 mt-2">18</p>
-                        </div>
-                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-cube text-blue-600 text-xl"></i>
-                        </div>
+            <!-- Statistics Grid -->
+            <div class="modules-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                <div class="card" style="display: flex; align-items: center; justify-content: space-between; padding: 1.5rem;">
+                    <div>
+                        <p style="color: var(--text-secondary); font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem;">Módulos</p>
+                        <p style="font-size: 1.875rem; font-weight: bold; color: var(--text-primary);">18</p>
+                    </div>
+                    <div style="width: 3rem; height: 3rem; background-color: var(--accent-light); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-cube" style="color: var(--accent-primary); font-size: 1.25rem;"></i>
                     </div>
                 </div>
 
-                <div class="stat-card">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-gray-600 text-sm font-medium">Usuários</p>
-                            <p class="text-3xl font-bold text-gray-900 mt-2">3</p>
-                        </div>
-                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-users text-green-600 text-xl"></i>
-                        </div>
+                <div class="card" style="display: flex; align-items: center; justify-content: space-between; padding: 1.5rem;">
+                    <div>
+                        <p style="color: var(--text-secondary); font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem;">Usuários</p>
+                        <p style="font-size: 1.875rem; font-weight: bold; color: var(--text-primary);">3</p>
+                    </div>
+                    <div style="width: 3rem; height: 3rem; background-color: rgba(16, 167, 96, 0.1); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-users" style="color: var(--success); font-size: 1.25rem;"></i>
                     </div>
                 </div>
 
-                <div class="stat-card">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-gray-600 text-sm font-medium">Status</p>
-                            <p class="text-lg font-bold text-green-600 mt-2">
-                                <i class="fas fa-circle text-green-500 text-xs mr-2"></i>Operacional
-                            </p>
-                        </div>
-                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-check-circle text-green-600 text-xl"></i>
-                        </div>
+                <div class="card" style="display: flex; align-items: center; justify-content: space-between; padding: 1.5rem;">
+                    <div>
+                        <p style="color: var(--text-secondary); font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem;">Status</p>
+                        <p style="font-size: 1rem; font-weight: bold; color: var(--success);">
+                            <i class="fas fa-circle" style="font-size: 0.5rem; margin-right: 0.5rem;"></i>Operacional
+                        </p>
+                    </div>
+                    <div style="width: 3rem; height: 3rem; background-color: rgba(16, 167, 96, 0.1); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-check-circle" style="color: var(--success); font-size: 1.25rem;"></i>
                     </div>
                 </div>
 
-                <div class="stat-card">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-gray-600 text-sm font-medium">Versão</p>
-                            <p class="text-2xl font-bold text-gray-900 mt-2">1.0.0</p>
-                        </div>
-                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-info-circle text-purple-600 text-xl"></i>
-                        </div>
+                <div class="card" style="display: flex; align-items: center; justify-content: space-between; padding: 1.5rem;">
+                    <div>
+                        <p style="color: var(--text-secondary); font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem;">Versão</p>
+                        <p style="font-size: 1.5rem; font-weight: bold; color: var(--text-primary);">1.0.0</p>
+                    </div>
+                    <div style="width: 3rem; height: 3rem; background-color: var(--accent-light); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-info-circle" style="color: var(--accent-primary); font-size: 1.25rem;"></i>
                     </div>
                 </div>
             </div>
 
-            <!-- Features Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Featured Modules -->
-                <div class="bg-white rounded-xl border border-gray-200 p-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                        <i class="fas fa-star text-yellow-500"></i>
+            <!-- Featured Modules & System Info -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                <div class="card">
+                    <h3 style="font-size: 1.125rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-star" style="color: #f59e0b;"></i>
                         Módulos Principais
                     </h3>
-                    <div class="space-y-3">
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
                         ${Object.entries(modules)
                             .filter(([key]) => ['cadastros', 'comercial', 'financeiro', 'operacao'].includes(key))
                             .map(([key, module]) => `
-                                <button onclick="loadModule('${key}')" class="w-full text-left p-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-between group">
+                                <button onclick="loadModule('${key}')" style="text-align: left; padding: 0.75rem; border-radius: 0.5rem; border: none; background-color: transparent; cursor: pointer; transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); display: flex; align-items: center; justify-content: space-between;" onmouseover="this.style.backgroundColor='var(--hover-bg)'" onmouseout="this.style.backgroundColor='transparent'">
                                     <div>
-                                        <p class="font-medium text-gray-900 group-hover:text-blue-600">${module.title}</p>
-                                        <p class="text-xs text-gray-600">${module.subtitle}</p>
+                                        <p style="font-weight: 500; color: var(--text-primary); margin-bottom: 0.25rem;">${module.title}</p>
+                                        <p style="font-size: 0.75rem; color: var(--text-secondary);">${module.subtitle}</p>
                                     </div>
-                                    <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                                    <i class="fas fa-arrow-right" style="color: var(--text-secondary);"></i>
                                 </button>
                             `).join('')}
                     </div>
                 </div>
 
-                <!-- System Info -->
-                <div class="bg-white rounded-xl border border-gray-200 p-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                        <i class="fas fa-info-circle text-blue-600"></i>
+                <div class="card">
+                    <h3 style="font-size: 1.125rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-info-circle" style="color: var(--accent-primary);"></i>
                         Informações do Sistema
                     </h3>
-                    <div class="space-y-3 text-sm">
-                        <div class="flex items-center justify-between py-2 border-b border-gray-100">
-                            <span class="text-gray-600">Empresa:</span>
-                            <span class="font-medium text-gray-900">TI UAI</span>
+                    <div style="display: flex; flex-direction: column; gap: 0; font-size: 0.875rem;">
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color);">
+                            <span style="color: var(--text-secondary);">Empresa:</span>
+                            <span style="font-weight: 500; color: var(--text-primary);">TI UAI</span>
                         </div>
-                        <div class="flex items-center justify-between py-2 border-b border-gray-100">
-                            <span class="text-gray-600">Versão:</span>
-                            <span class="font-medium text-gray-900">1.0.0 Beta</span>
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color);">
+                            <span style="color: var(--text-secondary);">Versão:</span>
+                            <span style="font-weight: 500; color: var(--text-primary);">1.0.0 Beta</span>
                         </div>
-                        <div class="flex items-center justify-between py-2 border-b border-gray-100">
-                            <span class="text-gray-600">Modo:</span>
-                            <span class="font-medium text-blue-600">Dados Mockados</span>
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color);">
+                            <span style="color: var(--text-secondary);">Modo:</span>
+                            <span style="font-weight: 500; color: var(--accent-primary);">Dados Mockados</span>
                         </div>
-                        <div class="flex items-center justify-between py-2">
-                            <span class="text-gray-600">Tipo:</span>
-                            <span class="font-medium text-gray-900">Multi-tenant</span>
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 0;">
+                            <span style="color: var(--text-secondary);">Tipo:</span>
+                            <span style="font-weight: 500; color: var(--text-primary);">Multi-tenant</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Quick Actions -->
-            <div class="bg-white rounded-xl border border-gray-200 p-6">
-                <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                    <i class="fas fa-lightning-bolt text-yellow-500"></i>
+            <div class="card" style="margin-top: 2rem;">
+                <h3 style="font-size: 1.125rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-lightning-bolt" style="color: #f59e0b;"></i>
                     Ações Rápidas
                 </h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-                    <button class="p-4 border border-gray-200 rounded-lg hover:border-blue-600 hover:bg-blue-50 transition-all text-center">
-                        <i class="fas fa-plus-circle text-blue-600 text-2xl mb-2"></i>
-                        <p class="text-sm font-medium text-gray-900">Novo Cadastro</p>
+                <div class="modules-grid">
+                    <button style="padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.5rem; background-color: transparent; cursor: pointer; transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); text-align: center;" onmouseover="this.style.borderColor='var(--accent-primary)'; this.style.backgroundColor='var(--accent-light)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.backgroundColor='transparent'">
+                        <i class="fas fa-plus-circle" style="color: var(--accent-primary); font-size: 1.5rem; display: block; margin-bottom: 0.5rem;"></i>
+                        <p style="font-size: 0.875rem; font-weight: 500; color: var(--text-primary);">Novo Cadastro</p>
                     </button>
-                    <button class="p-4 border border-gray-200 rounded-lg hover:border-green-600 hover:bg-green-50 transition-all text-center">
-                        <i class="fas fa-file-export text-green-600 text-2xl mb-2"></i>
-                        <p class="text-sm font-medium text-gray-900">Relatório</p>
+                    <button style="padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.5rem; background-color: transparent; cursor: pointer; transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); text-align: center;" onmouseover="this.style.borderColor='var(--success)'; this.style.backgroundColor='rgba(16, 167, 96, 0.05)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.backgroundColor='transparent'">
+                        <i class="fas fa-file-export" style="color: var(--success); font-size: 1.5rem; display: block; margin-bottom: 0.5rem;"></i>
+                        <p style="font-size: 0.875rem; font-weight: 500; color: var(--text-primary);">Relatório</p>
                     </button>
-                    <button class="p-4 border border-gray-200 rounded-lg hover:border-purple-600 hover:bg-purple-50 transition-all text-center">
-                        <i class="fas fa-chart-bar text-purple-600 text-2xl mb-2"></i>
-                        <p class="text-sm font-medium text-gray-900">Análise</p>
+                    <button style="padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.5rem; background-color: transparent; cursor: pointer; transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); text-align: center;" onmouseover="this.style.borderColor='var(--accent-primary)'; this.style.backgroundColor='var(--accent-light)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.backgroundColor='transparent'">
+                        <i class="fas fa-chart-bar" style="color: var(--accent-primary); font-size: 1.5rem; display: block; margin-bottom: 0.5rem;"></i>
+                        <p style="font-size: 0.875rem; font-weight: 500; color: var(--text-primary);">Análise</p>
                     </button>
-                    <button class="p-4 border border-gray-200 rounded-lg hover:border-orange-600 hover:bg-orange-50 transition-all text-center">
-                        <i class="fas fa-cog text-orange-600 text-2xl mb-2"></i>
-                        <p class="text-sm font-medium text-gray-900">Preferências</p>
+                    <button style="padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.5rem; background-color: transparent; cursor: pointer; transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); text-align: center;" onmouseover="this.style.borderColor='var(--accent-primary)'; this.style.backgroundColor='var(--accent-light)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.backgroundColor='transparent'" onclick="alert('Funcionalidade em breve!')">
+                        <i class="fas fa-cog" style="color: var(--accent-primary); font-size: 1.5rem; display: block; margin-bottom: 0.5rem;"></i>
+                        <p style="font-size: 0.875rem; font-weight: 500; color: var(--text-primary);">Preferências</p>
                     </button>
                 </div>
             </div>
         </div>
     `;
-
-    // Add event listeners for quick actions
-    contentArea.querySelectorAll('button').forEach((btn, idx) => {
-        if (idx > 3) { // Skip existing buttons, target only quick actions
-            btn.addEventListener('click', function() {
-                alert('Funcionalidade em breve!');
-            });
-        }
-    });
 }
 
 // Load Construction Page (for modules under development)
@@ -300,81 +277,81 @@ function loadConstructionPage(module) {
     const contentArea = document.getElementById('contentArea');
     
     const constructionHTML = `
-        <div class="construction-message max-w-2xl mx-auto">
+        <div class="construction-page" style="max-width: 42rem; margin: 2rem auto;">
             <!-- Main Construction Card -->
-            <div class="bg-white rounded-2xl shadow-xl p-12 text-center">
+            <div class="card" style="padding: 3rem; text-align: center;">
                 <!-- Icon -->
-                <div class="mb-6">
-                    <div class="w-24 h-24 mx-auto bg-gradient-to-br from-blue-100 to-blue-50 rounded-full flex items-center justify-center">
-                        <i class="fas ${module.icon} text-blue-600 text-5xl"></i>
+                <div style="margin-bottom: 1.5rem;">
+                    <div style="width: 6rem; height: 6rem; margin: 0 auto; background: linear-gradient(135deg, var(--accent-primary), var(--accent-light)); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas ${module.icon}" style="color: white; font-size: 2.5rem;"></i>
                     </div>
                 </div>
 
                 <!-- Title -->
-                <h1 class="text-4xl font-bold text-gray-900 mb-2">${module.title}</h1>
-                <p class="text-gray-600 text-lg mb-8">${module.subtitle}</p>
+                <h1 style="font-size: 2.25rem; font-weight: bold; color: var(--text-primary); margin-bottom: 0.5rem;">${module.title}</h1>
+                <p style="color: var(--text-secondary); font-size: 1.125rem; margin-bottom: 2rem;">${module.subtitle}</p>
 
                 <!-- Status Badge -->
-                <div class="inline-block mb-8">
-                    <div class="bg-yellow-50 border border-yellow-200 rounded-full px-4 py-2 flex items-center gap-2">
-                        <span class="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></span>
-                        <span class="text-sm font-medium text-yellow-800">Em Construção</span>
+                <div style="display: inline-block; margin-bottom: 2rem;">
+                    <div style="background-color: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 9999px; padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="width: 0.5rem; height: 0.5rem; background-color: #f59e0b; border-radius: 50%; animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;"></span>
+                        <span style="font-size: 0.875rem; font-weight: 500; color: #92400e;">Em Construção</span>
                     </div>
                 </div>
 
                 <!-- Message -->
-                <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
-                    <h2 class="font-semibold text-blue-900 mb-2">🚀 Desenvolvendo com cuidado</h2>
-                    <p class="text-blue-700 text-sm">
+                <div style="background-color: var(--accent-light); border: 1px solid var(--accent-primary); border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 2rem;">
+                    <h2 style="font-weight: 600; color: #003d99; margin-bottom: 0.5rem;">🚀 Desenvolvendo com cuidado</h2>
+                    <p style="color: #0052cc; font-size: 0.875rem;">
                         Nosso time está trabalhando para entregar um módulo robusto e de qualidade. 
                         Volte em breve para acessar todas as funcionalidades do <strong>${module.title}</strong>.
                     </p>
                 </div>
 
                 <!-- Timeline -->
-                <div class="space-y-4 mb-8 text-left max-w-sm mx-auto">
-                    <div class="flex items-start gap-3">
-                        <div class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0 mt-1">
-                            <i class="fas fa-check text-white text-xs"></i>
+                <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; text-align: left; max-width: 24rem; margin-left: auto; margin-right: auto;">
+                    <div style="display: flex; gap: 0.75rem;">
+                        <div style="width: 1.5rem; height: 1.5rem; border-radius: 50%; background-color: var(--success); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.25rem;">
+                            <i class="fas fa-check" style="color: white; font-size: 0.75rem;"></i>
                         </div>
                         <div>
-                            <p class="font-medium text-gray-900">Design e Arquitetura</p>
-                            <p class="text-xs text-gray-600">Concluído</p>
+                            <p style="font-weight: 500; color: var(--text-primary);">Design e Arquitetura</p>
+                            <p style="font-size: 0.75rem; color: var(--text-secondary);">Concluído</p>
                         </div>
                     </div>
-                    <div class="flex items-start gap-3">
-                        <div class="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0 mt-1">
-                            <div class="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                    <div style="display: flex; gap: 0.75rem;">
+                        <div style="width: 1.5rem; height: 1.5rem; border-radius: 50%; background-color: var(--accent-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.25rem;">
+                            <div style="width: 0.5rem; height: 0.5rem; background-color: white; border-radius: 50%; animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;"></div>
                         </div>
                         <div>
-                            <p class="font-medium text-gray-900">Implementação Backend</p>
-                            <p class="text-xs text-gray-600">Em progresso</p>
+                            <p style="font-weight: 500; color: var(--text-primary);">Implementação Backend</p>
+                            <p style="font-size: 0.75rem; color: var(--text-secondary);">Em progresso</p>
                         </div>
                     </div>
-                    <div class="flex items-start gap-3">
-                        <div class="w-6 h-6 rounded-full bg-gray-300 flex items-center justify-center flex-shrink-0 mt-1"></div>
+                    <div style="display: flex; gap: 0.75rem;">
+                        <div style="width: 1.5rem; height: 1.5rem; border-radius: 50%; background-color: var(--border-color); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.25rem;"></div>
                         <div>
-                            <p class="font-medium text-gray-500">Testes e Validação</p>
-                            <p class="text-xs text-gray-500">Próxima etapa</p>
+                            <p style="font-weight: 500; color: var(--text-secondary);">Testes e Validação</p>
+                            <p style="font-size: 0.75rem; color: var(--text-secondary);">Próxima etapa</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Action Buttons -->
-                <div class="space-y-3">
-                    <button onclick="loadModule('dashboard')" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all transform hover:scale-105">
-                        <i class="fas fa-arrow-left mr-2"></i>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <button onclick="loadModule('dashboard')" class="btn btn-primary">
+                        <i class="fas fa-arrow-left" style="margin-right: 0.5rem;"></i>
                         Voltar ao Dashboard
                     </button>
-                    <button onclick="alert('Notificação ativada! Você será avisado quando este módulo estiver pronto.')" class="w-full border-2 border-blue-600 hover:bg-blue-50 text-blue-600 font-semibold py-3 px-6 rounded-lg transition-colors">
-                        <i class="fas fa-bell mr-2"></i>
+                    <button onclick="alert('Notificação ativada! Você será avisado quando este módulo estiver pronto.')" style="border: 2px solid var(--accent-primary); background-color: transparent; color: var(--accent-primary); font-weight: 600; padding: 0.75rem 1.5rem; border-radius: 0.5rem; cursor: pointer; transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.backgroundColor='var(--accent-light)'" onmouseout="this.style.backgroundColor='transparent'">
+                        <i class="fas fa-bell" style="margin-right: 0.5rem;"></i>
                         Notificar-me quando Estiver Pronto
                     </button>
                 </div>
 
                 <!-- Footer Note -->
-                <p class="text-xs text-gray-500 mt-8">
-                    <i class="fas fa-info-circle mr-2"></i>
+                <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 2rem;">
+                    <i class="fas fa-info-circle" style="margin-right: 0.5rem;"></i>
                     Versão Beta 1.0.0 • Desenvolvido por TI UAI
                 </p>
             </div>
