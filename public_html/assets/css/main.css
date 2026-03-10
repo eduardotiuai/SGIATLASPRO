@@ -442,7 +442,7 @@ html[data-theme="dark"] .form-textarea {
    ================================================ */
 
 .header {
-    flex: 1;
+    flex: 0;
     background-color: white;
     border-bottom: 1px solid var(--secondary-light);
     display: flex;
