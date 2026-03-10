@@ -16,6 +16,11 @@
     --accent-hover: #0042a3;      /* Darker blue */
     --accent-light: #e3f2fd;      /* Light blue bg */
     
+    /* Violet Palette for Login */
+    --violet-dark: #6b21a8;       /* Deep violet */
+    --violet-bright: #a855f7;     /* Bright violet */
+    --violet-light: #e9d5ff;      /* Light violet */
+    
     /* Status Colors */
     --success: #10a760;           /* Green */
     --danger: #dc2626;            /* Red */
@@ -64,7 +69,7 @@ html[data-theme="dark"] .form-label {
 }
 
 html[data-theme="dark"] .auth-brand {
-    background: linear-gradient(135deg, #005bb3 0%, #1e90ff 100%) !important;
+    background: linear-gradient(135deg, #6b21a8 0%, #a855f7 100%) !important;
 }
 
 html[data-theme="dark"] .auth-form-container {
@@ -152,7 +157,7 @@ body {
 
 .auth-brand {
     flex: 0 0 40%;
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+    background: linear-gradient(135deg, #6b21a8 0%, #a855f7 100%);
     color: white;
     display: flex;
     flex-direction: column;
@@ -170,7 +175,7 @@ body {
     right: -50%;
     width: 500px;
     height: 500px;
-    background: rgba(0, 82, 204, 0.05);
+    background: rgba(168, 85, 247, 0.1);
     border-radius: 50%;
 }
 
@@ -392,6 +397,11 @@ html[data-theme="dark"] .sidebar {
     color: #0052cc;
 }
 
+html[data-theme="dark"] .sidebar-logo-icon {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
 .sidebar.collapsed .sidebar-logo-text {
     display: none;
 }
@@ -453,10 +463,20 @@ html[data-theme="dark"] .sidebar {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+html[data-theme="dark"] .sidebar-item:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
 .sidebar-item.active {
     color: white;
     background-color: rgba(0, 82, 204, 0.2);
     border-left-color: #0052cc;
+}
+
+html[data-theme="dark"] .sidebar-item.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-left-color: rgba(255, 255, 255, 0.8);
 }
 
 .sidebar-item-icon {
@@ -470,6 +490,16 @@ html[data-theme="dark"] .sidebar {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: rgba(255, 255, 255, 0.8);
+    transition: color var(--transition);
+}
+
+.sidebar-item:hover .sidebar-item-text {
+    color: white;
+}
+
+html[data-theme="dark"] .sidebar-item:hover .sidebar-item-text {
+    color: white;
 }
 
 .sidebar.collapsed .sidebar-item-text {
