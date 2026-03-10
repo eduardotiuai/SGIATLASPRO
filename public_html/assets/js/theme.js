@@ -10,10 +10,10 @@ class ThemeManager {
     }
 
     init() {
+        // Use saved theme, otherwise default to light mode
+        // (ignore system preference for consistency)
         const savedTheme = localStorage.getItem(this.storageKey);
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        const theme = savedTheme || (systemPrefersDark ? 'dark' : this.defaultTheme);
+        const theme = savedTheme || this.defaultTheme;
         this.setTheme(theme);
         this.attachToggleListener();
     }
