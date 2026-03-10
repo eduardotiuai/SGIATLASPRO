@@ -32,6 +32,8 @@
     --dark-card: #353535;         /* Medium gray card */
     --dark-text: #f0f0f0;         /* Light text */
     --dark-border: #404040;       /* Dark gray border */
+    --sidebar-dark: #1a1a1a;      /* Very dark gray sidebar */
+    --sidebar-dark-text: #ffffff; /* White text on dark sidebar */
     
     /* Spacing & Sizing */
     --radius: 6px;                /* Subtle radius */
@@ -50,6 +52,43 @@ html[data-theme="dark"] {
     --text-tertiary: #b0b0b0;
     --primary-light: var(--dark-bg);
     --secondary-light: var(--dark-border);
+}
+
+/* Prevent Login Page from Dark Mode */
+html[data-theme="dark"] .auth-brand,
+html[data-theme="dark"] .auth-form-container,
+html[data-theme="dark"] .auth-heading,
+html[data-theme="dark"] .auth-description,
+html[data-theme="dark"] .form-label {
+    filter: none !important;
+}
+
+html[data-theme="dark"] .auth-brand {
+    background: linear-gradient(135deg, #005bb3 0%, #1e90ff 100%) !important;
+}
+
+html[data-theme="dark"] .auth-form-container {
+    background-color: #ffffff !important;
+}
+
+html[data-theme="dark"] .auth-heading {
+    color: #1a202c !important;
+}
+
+html[data-theme="dark"] .auth-description {
+    color: #4a5568 !important;
+}
+
+html[data-theme="dark"] .form-input,
+html[data-theme="dark"] .form-select,
+html[data-theme="dark"] .form-textarea {
+    background-color: #ffffff !important;
+    color: #1a202c !important;
+    border-color: #d4e5f7 !important;
+}
+
+html[data-theme="dark"] .form-input::placeholder {
+    color: #718096 !important;
 }
 
 /* ================================================
@@ -312,6 +351,11 @@ html[data-theme="dark"] .form-textarea {
     border-right: 1px solid rgba(255, 255, 255, 0.1);
     transition: flex var(--transition);
     overflow-y: auto;
+}
+
+html[data-theme="dark"] .sidebar {
+    background-color: var(--sidebar-dark);
+    border-right-color: rgba(255, 255, 255, 0.05);
 }
 
 .sidebar.collapsed {
