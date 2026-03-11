@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SGI ATLAS - Acesso ao Sistema</title>
+    <title>SGI OTI - Acesso ao Sistema</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="stylesheet" href="assets/css/main.css?v=1.9.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,48 +13,49 @@
         <!-- Brand Side -->
         <div class="auth-brand">
             <!-- Background image with overlay -->
-            <img src="assets/img/imglogin.jpg?v=1.9.0" alt="Arquitetura moderna" class="auth-brand-bg">
+            <img src="assets/img/imglogin.jpg?v=1.9.0" alt="Plataforma de Outsourcing" class="auth-brand-bg">
             <div class="auth-brand-overlay"></div>
             
-            <div class="auth-logo">SA</div>
-            <div class="auth-title">SGI ATLAS</div>
-            <div class="auth-subtitle">Sistema de Gestão Integrada</div>
+            <div class="auth-logo">SO</div>
+            <div class="auth-title">SGI OTI</div>
+            <div class="auth-subtitle">Sistema de Gestão Integrada para Outsourcing TI</div>
             
-            <div style="margin-top: 3rem; text-align: center; position: relative; z-index: 1;">
-                <p style="font-size: 0.875rem; opacity: 0.9; line-height: 1.6;">
-                    <i class="fas fa-check-circle" style="margin-right: 0.5rem;"></i>
-                    Segurança Enterprise<br>
-                    <i class="fas fa-lightning-bolt" style="margin-right: 0.5rem;"></i>
-                    Performance Otimizada<br>
-                    <i class="fas fa-users" style="margin-right: 0.5rem;"></i>
-                    Multi-tenant
-                </p>
+            <!-- Modules Carousel Animation -->
+            <div style="margin-top: 1.5rem; padding: 1.25rem; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); min-height: 120px; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1;">
+                <div style="text-align: center; width: 100%;">
+                    <div id="sidebarModuleCarousel" style="font-size: 3rem; margin-bottom: 0.75rem; transition: opacity 0.3s ease-in-out;">📋</div>
+                    <div id="sidebarModuleName" style="font-size: 1rem; font-weight: 600; color: white; margin-bottom: 0.35rem; transition: opacity 0.3s ease-in-out;">Gestão de Contratos</div>
+                    <div id="sidebarModuleDesc" style="font-size: 0.8rem; color: rgba(255, 255, 255, 0.7); transition: opacity 0.3s ease-in-out;">Administração de contratos</div>
+                </div>
             </div>
         </div>
 
         <!-- Form Side -->
         <div class="auth-form-container">
             <form class="auth-form" id="loginForm" onsubmit="handleLogin(event)">
-                <h1 class="auth-heading">Bem-vindo ao SGI ATLAS</h1>
+                <h1 class="auth-heading">Bem-vindo ao SGI OTI</h1>
                 <p class="auth-description">Sistema de Gestão Integrada com IA</p>
 
-                <!-- Modules Carousel -->
-                <div style="margin: 2.5rem 0; padding: 1.5rem; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); min-height: 140px; display: flex; align-items: center; justify-content: center;">
-                    <div style="text-align: center; width: 100%;">
-                        <div id="moduleCarousel" style="font-size: 3rem; margin-bottom: 1rem;">📊</div>
-                        <div id="moduleNameCarousel" style="font-size: 1.1rem; font-weight: 600; color: white; margin-bottom: 0.5rem;">Controle Financeiro</div>
-                        <div id="moduleDescCarousel" style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.7);">Gestão completa de finanças e orçamentos</div>
-                    </div>
+                <!-- Email Input -->
+                <div style="margin-bottom: 1.5rem; margin-top: 2rem;">
+                    <label for="email" style="display: block; font-size: 0.875rem; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.95); font-weight: 500;">Email</label>
+                    <input type="email" id="email" name="email" placeholder="usuario@tiiuai.com.br" class="auth-input" style="width: 100%; padding: 0.75rem 1rem; background: rgba(255, 255, 255, 0.12); border: 2px solid #0052cc; border-radius: 8px; color: rgba(255, 255, 255, 0.95); font-size: 0.95rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#0066ff'; this.style.boxShadow='0 0 12px rgba(0, 102, 255, 0.3)'; this.style.background='rgba(255, 255, 255, 0.15)';" onblur="this.style.borderColor='#0052cc'; this.style.boxShadow='none'; this.style.background='rgba(255, 255, 255, 0.12)';">
+                </div>
+
+                <!-- Password Input -->
+                <div style="margin-bottom: 2rem;">
+                    <label for="password" style="display: block; font-size: 0.875rem; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.95); font-weight: 500;">Senha</label>
+                    <input type="password" id="password" name="password" placeholder="Sua senha" class="auth-input" style="width: 100%; padding: 0.75rem 1rem; background: rgba(255, 255, 255, 0.12); border: 2px solid #0052cc; border-radius: 8px; color: rgba(255, 255, 255, 0.95); font-size: 0.95rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#0066ff'; this.style.boxShadow='0 0 12px rgba(0, 102, 255, 0.3)'; this.style.background='rgba(255, 255, 255, 0.15)';" onblur="this.style.borderColor='#0052cc'; this.style.boxShadow='none'; this.style.background='rgba(255, 255, 255, 0.12)';">
                 </div>
 
                 <!-- Access Button -->
-                <button type="button" class="btn btn-primary" onclick="accessAsVisitor()" style="width: 100%;">
+                <button type="button" class="btn btn-primary" onclick="accessAsVisitor()" style="width: 100%; margin-bottom: 0.75rem;">
                     <i class="fas fa-sign-in-alt" style="margin-right: 0.5rem;"></i>
                     Entrar no Sistema
                 </button>
 
                 <!-- Request Access Button -->
-                <button type="button" class="btn btn-secondary" onclick="requestAccess()" style="margin-top: 0.75rem; width: 100%;">
+                <button type="button" class="btn btn-secondary" onclick="requestAccess()" style="width: 100%;">
                     <i class="fas fa-hand-paper" style="margin-right: 0.5rem;"></i>
                     Solicitar Acesso
                 </button>
@@ -62,7 +63,7 @@
 
             <!-- Footer -->
             <div style="margin-top: 2rem; text-align: center; font-size: 0.75rem; color: var(--text-tertiary);">
-                <p>SGI ATLAS v1.0.0 • TI UAI © 2026</p>
+                <p>SGI OTI v1.0.0 • SO by TI UAI © 2026</p>
             </div>
         </div>
     </div>
@@ -70,50 +71,63 @@
     <script src="assets/js/theme.js?v=1.9.0"></script>
     <script src="assets/js/auth.js?v=1.9.0"></script>
     <script>
-        // Module Carousel Animation
+        // Module Carousel Animation for Login Page
         const modules = [
-            { icon: '📊', name: 'Controle Financeiro', desc: 'Gestão completa de finanças e orçamentos' },
-            { icon: '🏭', name: 'Controle de Logística', desc: 'Rastreamento e gerenciamento de entrega' },
-            { icon: '👥', name: 'Gestão de RH', desc: 'Administração de recursos humanos e folha' },
-            { icon: '📦', name: 'Estoque', desc: 'Controle de inventário e produtos' },
-            { icon: '📞', name: 'Atendimento', desc: 'Sistema de tickets e suporte ao cliente' },
-            { icon: '⚙️', name: 'Configurações', desc: 'Personalização do sistema e preferências' }
+            { icon: '📋', name: 'Gestão de Contratos', desc: 'Administração de contratos' },
+            { icon: '💰', name: 'Contas a Pagar e Receber', desc: 'Fluxo de caixa e contas financeiras' },
+            { icon: '📦', name: 'Controle de Estoque', desc: 'Gerenciamento e inventários' },
+            { icon: '🚚', name: 'Gestão de Frotas', desc: 'Administração de veículos' },
+            { icon: '🎯', name: 'CRM Comercial', desc: 'Gestão de relacionamento com cliente' },
+            { icon: '⚙️', name: 'Controle Operacional', desc: 'Supervisão e operações' },
+            { icon: '🔧', name: 'Suporte Técnico', desc: 'Suporte técnico ao cliente e manutenção' },
+            { icon: '👥', name: 'Recursos Humanos', desc: 'Gestão de pessoal e folha' },
+            { icon: '✅', name: 'Gestão da Qualidade', desc: 'Controle de qualidade' },
+            { icon: '♻️', name: 'Gestão de Resíduos', desc: 'Gestão ambiental' },
+            { icon: '📊', name: 'Controle de Contadores', desc: 'Gestão de Contadores com Gestor Print' },
+            { icon: '🛒', name: 'Departamento de Compras', desc: 'Gestão de aquisições' },
+            { icon: '📈', name: 'Dashboards', desc: 'Análise e relatórios executivos' },
+            { icon: '🚀', name: 'Gestão de Implantações', desc: 'Novos Projetos' },
+            { icon: '🗂️', name: 'Gestão de Cadastros', desc: 'Base de dados centralizada' },
+            { icon: '📍', name: 'Suporte de Controle de Suprimentos', desc: 'Abastecimento e atendimento ao cliente' },
+            { icon: '🌐', name: 'Logística', desc: 'Distribuição e transporte' }
         ];
 
         let currentModuleIndex = 0;
-        const carousel = document.getElementById('moduleCarousel');
-        const name = document.getElementById('moduleNameCarousel');
-        const desc = document.getElementById('moduleDescCarousel');
+        const carousel = document.getElementById('sidebarModuleCarousel');
+        const name = document.getElementById('sidebarModuleName');
+        const desc = document.getElementById('sidebarModuleDesc');
 
-        function rotateModules() {
-            const module = modules[currentModuleIndex];
-            
-            // Fade out
-            carousel.style.opacity = '0.5';
-            name.style.opacity = '0.5';
-            desc.style.opacity = '0.5';
+        if (carousel && name && desc) {
+            function rotateModules() {
+                const module = modules[currentModuleIndex];
+                
+                // Fade out
+                carousel.style.opacity = '0.5';
+                name.style.opacity = '0.5';
+                desc.style.opacity = '0.5';
 
-            setTimeout(() => {
-                carousel.innerHTML = module.icon;
-                name.innerHTML = module.name;
-                desc.innerHTML = module.desc;
+                setTimeout(() => {
+                    carousel.innerHTML = module.icon;
+                    name.innerHTML = module.name;
+                    desc.innerHTML = module.desc;
 
-                // Fade in
-                carousel.style.opacity = '1';
-                name.style.opacity = '1';
-                desc.style.opacity = '1';
+                    // Fade in
+                    carousel.style.opacity = '1';
+                    name.style.opacity = '1';
+                    desc.style.opacity = '1';
 
-                currentModuleIndex = (currentModuleIndex + 1) % modules.length;
-            }, 300);
+                    currentModuleIndex = (currentModuleIndex + 1) % modules.length;
+                }, 300);
+            }
+
+            // Set initial transition
+            carousel.style.transition = 'opacity 0.3s ease-in-out';
+            name.style.transition = 'opacity 0.3s ease-in-out';
+            desc.style.transition = 'opacity 0.3s ease-in-out';
+
+            // Rotate every 5 seconds
+            setInterval(rotateModules, 5000);
         }
-
-        // Set initial transition
-        carousel.style.transition = 'opacity 0.3s ease-in-out';
-        name.style.transition = 'opacity 0.3s ease-in-out';
-        desc.style.transition = 'opacity 0.3s ease-in-out';
-
-        // Rotate every 5 seconds
-        setInterval(rotateModules, 5000);
     </script>
 </body>
 </html>

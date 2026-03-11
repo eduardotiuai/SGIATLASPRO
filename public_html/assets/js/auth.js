@@ -121,9 +121,9 @@ function accessAsVisitor() {
     const visitorUser = {
         id: 0,
         name: 'Visitante',
-        email: 'visitante@sgiatlaspro.local',
+        email: 'visitante@sgioti.local',
         role: 'visitor',
-        company: 'SGI ATLAS',
+        company: 'SGI OTI',
         avatar: 'https://ui-avatars.com/api/?name=Visitante&background=6366f1&color=fff',
         department: 'Visitante'
     };

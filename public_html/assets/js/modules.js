@@ -1,122 +1,122 @@
 // Module Configuration
 const modules = {
-    dashboard: {
-        title: 'Dashboard',
-        subtitle: 'Visão geral do sistema',
-        icon: 'fa-home'
-    },
     cadastros: {
         title: 'Cadastros',
-        subtitle: 'Gerenciamento de clientes, fornecedores e produtos',
+        subtitle: 'Módulo Cadastros - Gerenciamento de dados centralizados',
         icon: 'fa-address-card',
         construction: true
     },
-    qualidade: {
-        title: 'Qualidade',
-        subtitle: 'Controle de qualidade e conformidade',
-        icon: 'fa-check-circle',
+    recursos_humanos: {
+        title: 'Recursos Humanos',
+        subtitle: 'Módulo Recursos Humanos - Gestão de pessoal e folha de pagamento',
+        icon: 'fa-users',
         construction: true
     },
-    comercial: {
-        title: 'Comercial',
-        subtitle: 'Vendas, propostas e oportunidades',
-        icon: 'fa-chart-line',
-        construction: true
-    },
-    financeiro: {
-        title: 'Financeiro',
-        subtitle: 'Fluxo de caixa e análises financeiras',
-        icon: 'fa-wallet',
-        construction: true
-    },
-    operacao: {
-        title: 'Operação',
-        subtitle: 'Planejamento e controle operacional',
-        icon: 'fa-cogs',
-        construction: true
-    },
-    compras: {
-        title: 'Compras',
-        subtitle: 'Requisições e pedidos de compra',
-        icon: 'fa-shopping-cart',
-        construction: true
-    },
-    logistica: {
-        title: 'Logística',
-        subtitle: 'Rastreamento e gerenciamento de entregas',
-        icon: 'fa-truck',
+    suprimentos: {
+        title: 'Suprimentos',
+        subtitle: 'Módulo Suprimentos - Abastecimento e atendimento ao cliente',
+        icon: 'fa-dolly',
         construction: true
     },
     estoque: {
         title: 'Estoque',
-        subtitle: 'Controle de inventário e movimentações',
+        subtitle: 'Módulo Estoque - Controle de inventário e movimentações',
         icon: 'fa-boxes',
         construction: true
     },
     frotas: {
         title: 'Frotas',
-        subtitle: 'Gestão de veículos e manutenção',
+        subtitle: 'Módulo Frotas - Gestão de veículos e administração',
         icon: 'fa-van-shuttle',
         construction: true
     },
-    licitacoes: {
-        title: 'Licitações',
-        subtitle: 'Gestão de pregões e processos licitatórios',
-        icon: 'fa-gavel',
-        construction: true
-    },
-    controladoria: {
-        title: 'Controladoria',
-        subtitle: 'Relatórios e análises estratégicas',
-        icon: 'fa-chart-pie',
-        construction: true
-    },
-    faturamento: {
-        title: 'Faturamento',
-        subtitle: 'Emissão e controle de faturas',
-        icon: 'fa-receipt',
+    comercial: {
+        title: 'Comercial',
+        subtitle: 'Módulo Comercial - Gestão de relacionamento com cliente',
+        icon: 'fa-chart-line',
         construction: true
     },
     contratos: {
         title: 'Contratos',
-        subtitle: 'Gestão de contratos e cláusulas',
+        subtitle: 'Módulo Contratos - Administração de contratos',
         icon: 'fa-file-contract',
         construction: true
     },
-    atendimentos: {
-        title: 'Atendimentos',
-        subtitle: 'Central de chamados e tickets',
-        icon: 'fa-headset',
+    implantacao: {
+        title: 'Implantação',
+        subtitle: 'Módulo Implantação - Gestão de novos projetos',
+        icon: 'fa-rocket',
         construction: true
     },
-    suprimentos: {
-        title: 'Suprimentos',
-        subtitle: 'Gestão de materiais e fornecimento',
-        icon: 'fa-dolly',
+    logistica: {
+        title: 'Logística',
+        subtitle: 'Módulo Logística - Distribuição e transporte',
+        icon: 'fa-truck',
         construction: true
     },
-    manutencao: {
-        title: 'Manutenção',
-        subtitle: 'Preventiva, corretiva e agendamentos',
+    controle_operacional: {
+        title: 'Controle Operacional',
+        subtitle: 'Módulo Controle Operacional - Supervisão de operações',
+        icon: 'fa-cogs',
+        construction: true
+    },
+    suporte_tecnico: {
+        title: 'Suporte Técnico',
+        subtitle: 'Módulo Suporte Técnico - Suporte ao cliente e manutenção',
         icon: 'fa-tools',
         construction: true
     },
-    almoxarifado: {
-        title: 'Almoxarifado',
-        subtitle: 'Controle centralizado de armazenagem',
-        icon: 'fa-warehouse',
+    compras: {
+        title: 'Compras',
+        subtitle: 'Módulo Compras - Gestão de aquisições',
+        icon: 'fa-shopping-cart',
+        construction: true
+    },
+    qualidade: {
+        title: 'Qualidade',
+        subtitle: 'Módulo Qualidade - Controle de qualidade',
+        icon: 'fa-check-circle',
+        construction: true
+    },
+    residuos: {
+        title: 'Resíduos',
+        subtitle: 'Módulo Resíduos - Gestão ambiental',
+        icon: 'fa-recycle',
+        construction: true
+    },
+    financeiro: {
+        title: 'Financeiro',
+        subtitle: 'Módulo Financeiro - Fluxo de caixa e contas financeiras',
+        icon: 'fa-money-bill-wave',
+        construction: true
+    },
+    contadores: {
+        title: 'Contadores',
+        subtitle: 'Módulo Contadores - Gestão de contadores com gestor print',
+        icon: 'fa-calculator',
+        construction: true
+    },
+    dashboards: {
+        title: 'Dashboards',
+        subtitle: 'Módulo Dashboards - Análise e relatórios executivos',
+        icon: 'fa-chart-pie',
         construction: true
     },
     configuracoes: {
-        title: 'Configurações',
-        subtitle: 'Gerenciamento de usuários e sistema',
+        title: 'Configurações do Sistema',
+        subtitle: 'Módulo Configurações - Gerenciamento do sistema',
         icon: 'fa-cog',
         construction: true
     },
     inicio: {
         title: 'Início',
-        subtitle: 'Bem-vindo ao SGI ATLAS',
+        subtitle: 'Bem-vindo ao SGI OTI',
         icon: 'fa-star'
+    },
+    dashboard: {
+        title: 'Dashboard',
+        subtitle: 'Visão geral do sistema',
+        icon: 'fa-home'
     },
     mensagens: {
         title: 'Mensagens',
@@ -172,7 +172,7 @@ function loadDashboard() {
         <div class="main-content-section">
             <!-- Welcome Section -->
             <div class="card welcome-card" style="background: linear-gradient(135deg, var(--accent-primary), var(--primary-dark)); color: white; padding: 1rem; margin-bottom: 0.5rem;">
-                <h2 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 0.25rem;">Bem-vindo ao SGI ATLAS!</h2>
+                <h2 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 0.25rem;">Bem-vindo ao SGI OTI!</h2>
                 <p style="opacity: 0.9; font-size: 0.85rem;">Sistema Enterprise - Selecione um módulo na barra lateral</p>
             </div>
 
@@ -401,7 +401,7 @@ function loadHomeModule() {
                     👋 Bem-vindo, ${userName}!
                 </h1>
                 <p style="font-size: 1rem; opacity: 0.95;">
-                    Explore os módulos do SGI ATLAS e descubra toda a potência do nossa plataforma de gestão integrada.
+                    Explore os módulos do SGI OTI e descubra toda a potência do nossa plataforma de gestão integrada.
                 </p>
             </div>
 
@@ -413,7 +413,7 @@ function loadHomeModule() {
                     </div>
                     <div>
                         <h2 style="font-size: 1.25rem; font-weight: bold; color: var(--text-primary); margin-bottom: 0.25rem;">Versão do Sistema</h2>
-                        <p style="color: var(--text-secondary);">SGI ATLAS v1.8.0</p>
+                        <p style="color: var(--text-secondary);">SGI OTI v1.8.0</p>
                     </div>
                 </div>
                 <div style="background-color: var(--accent-light); border-left: 4px solid var(--accent-primary); padding: 1rem; border-radius: 0.5rem;">

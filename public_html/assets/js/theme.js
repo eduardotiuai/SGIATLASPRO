@@ -1,5 +1,5 @@
 /* ================================================
-   SGI ATLAS - Theme Manager (Light/Dark Mode)
+   SGI OTI - Theme Manager (Light/Dark Mode)
    ================================================ */
 
 class ThemeManager {
@@ -31,7 +31,7 @@ class ThemeManager {
     }
 
     attachToggleListener() {
-        const toggleBtn = document.querySelector('.theme-toggle');
+        const toggleBtn = document.querySelector('#themeToggle, .theme-toggle');
         if (toggleBtn) {
             toggleBtn.addEventListener('click', () => this.toggle());
         }
@@ -45,11 +45,14 @@ class ThemeManager {
     }
 
     updateToggleIcon() {
-        const toggleBtn = document.querySelector('.theme-toggle');
+        const toggleBtn = document.querySelector('#themeToggle, .theme-toggle');
         if (!toggleBtn) return;
 
         const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-        toggleBtn.innerHTML = isDark ? '☀️' : '🌙';
+        const icon = toggleBtn.querySelector('i');
+        if (icon) {
+            icon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+        }
     }
 }
 

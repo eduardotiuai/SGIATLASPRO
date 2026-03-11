@@ -8,6 +8,6 @@
   <!-- Background -->
   <rect width="192" height="192" fill="url(#grad)" rx="40"/>
   
-  <!-- Logo text: SA -->
-  <text x="96" y="128" font-family="Arial, sans-serif" font-size="96" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">SA</text>
+  <!-- Logo text: SO -->
+  <text x="96" y="128" font-family="Arial, sans-serif" font-size="96" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">SO</text>
 </svg>

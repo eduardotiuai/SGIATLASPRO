@@ -1,5 +1,5 @@
 /* ================================================
-   SGI ATLAS - Sidebar Management
+   SGI OTI - Sidebar Management
    ================================================ */
 
 // Check authentication and load user profile
@@ -40,28 +40,41 @@ function loadUserProfile(user) {
     }
 }
 
-// Sidebar Toggle
-const toggleButton = document.getElementById('toggleSidebar');
-document.getElementById('toggleSidebar')?.addEventListener('click', function() {
-    const sidebar = document.getElementById('sidebar');
-    const isCollapsed = sidebar.classList.contains('collapsed');
+// Sidebar Toggle with Animation
+const toggleButton = document.getElementById('sidebarLogoToggle');
+const logoIcon = document.getElementById('sidebarLogoIcon');
 
-    if (isCollapsed) {
-        sidebar.classList.remove('collapsed');
-        localStorage.setItem('sidebarCollapsed', 'false');
-    } else {
-        sidebar.classList.add('collapsed');
-        localStorage.setItem('sidebarCollapsed', 'true');
-    }
-});
+if (toggleButton) {
+    toggleButton.addEventListener('click', function() {
+        const sidebar = document.getElementById('sidebar');
+        const isCollapsed = sidebar.classList.contains('collapsed');
 
-// Clicking logo should also toggle sidebar
-const sidebarLogo = document.querySelector('.sidebar-logo');
-if (sidebarLogo) {
-    sidebarLogo.addEventListener('click', function() {
-        toggleButton?.click();
+        // Add rotating animation to icon
+        logoIcon?.classList.add('rotating');
+
+        // Remove animation class after it completes
+        setTimeout(() => {
+            logoIcon?.classList.remove('rotating');
+        }, 600);
+
+        if (isCollapsed) {
+            sidebar.classList.remove('collapsed');
+            localStorage.setItem('sidebarCollapsed', 'false');
+        } else {
+            sidebar.classList.add('collapsed');
+            localStorage.setItem('sidebarCollapsed', 'true');
+        }
     });
 }
+
+// Legacy support - remove old toggle button if it exists
+const oldToggleButton = document.getElementById('toggleSidebar');
+if (oldToggleButton) {
+    oldToggleButton.remove();
+}
+
+// Clicking logo should also toggle sidebar - handled above
+// Legacy code removed
 
 // Theme toggle helper
 function toggleTheme() {
